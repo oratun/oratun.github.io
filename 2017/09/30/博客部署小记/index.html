@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="安装npm：12brew updatebrew install npm 安装hexo:1npm install -g hexo-cli 建站：1234hexo init Blog #使用Blog作为网站目录cd Blognpm installhexo server #访问 http://localhost:4000 查看demo 部署到Github pages：生成ssh key并添加到githu">
+<meta name="description" content="使用Hexo静态博客安装npm：12brew update #通过brew进行安装brew install npm 安装hexo:1npm install -g hexo-cli 新建本地站点：1234hexo init Blog #使用Blog作为网站目录cd Blognpm installhexo server #访问 http://localhost:4000 查看demo 创建文章：123">
 <meta property="og:type" content="article">
 <meta property="og:title" content="博客部署小记">
 <meta property="og:url" content="http://tongzhaohui.com/2017/09/30/博客部署小记/index.html">
 <meta property="og:site_name" content="Oratun&#39;s Blog">
-<meta property="og:description" content="安装npm：12brew updatebrew install npm 安装hexo:1npm install -g hexo-cli 建站：1234hexo init Blog #使用Blog作为网站目录cd Blognpm installhexo server #访问 http://localhost:4000 查看demo 部署到Github pages：生成ssh key并添加到githu">
+<meta property="og:description" content="使用Hexo静态博客安装npm：12brew update #通过brew进行安装brew install npm 安装hexo:1npm install -g hexo-cli 新建本地站点：1234hexo init Blog #使用Blog作为网站目录cd Blognpm installhexo server #访问 http://localhost:4000 查看demo 创建文章：123">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-01T13:18:51.920Z">
+<meta property="og:updated_time" content="2017-10-01T14:55:43.093Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="博客部署小记">
-<meta name="twitter:description" content="安装npm：12brew updatebrew install npm 安装hexo:1npm install -g hexo-cli 建站：1234hexo init Blog #使用Blog作为网站目录cd Blognpm installhexo server #访问 http://localhost:4000 查看demo 部署到Github pages：生成ssh key并添加到githu">
+<meta name="twitter:description" content="使用Hexo静态博客安装npm：12brew update #通过brew进行安装brew install npm 安装hexo:1npm install -g hexo-cli 新建本地站点：1234hexo init Blog #使用Blog作为网站目录cd Blognpm installhexo server #访问 http://localhost:4000 查看demo 创建文章：123">
 
 
 
@@ -284,6 +284,17 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/30/博客部署小记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/09/30/博客部署小记/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -308,15 +319,17 @@
       
 
       
-        <h2 id="安装npm："><a href="#安装npm：" class="headerlink" title="安装npm："></a>安装npm：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">brew update</div><div class="line">brew install npm</div></pre></td></tr></table></figure>
-<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo:"></a>安装hexo:</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo-cli</div></pre></td></tr></table></figure>
-<h2 id="建站："><a href="#建站：" class="headerlink" title="建站："></a>建站：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hexo init Blog <span class="comment">#使用Blog作为网站目录</span></div><div class="line"><span class="built_in">cd</span> Blog</div><div class="line">npm install</div><div class="line">hexo server <span class="comment">#访问 http://localhost:4000 查看demo</span></div></pre></td></tr></table></figure>
-<h2 id="部署到Github-pages："><a href="#部署到Github-pages：" class="headerlink" title="部署到Github pages："></a>部署到Github pages：</h2><h2 id="生成ssh-key并添加到github："><a href="#生成ssh-key并添加到github：" class="headerlink" title="生成ssh key并添加到github："></a>生成ssh key并添加到github：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C warn1667@gmail.com <span class="comment">#在主目录下新建ssh key</span></div><div class="line">Generating public/private rsa key pair.</div><div class="line">Enter file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (/Users/oratun/.ssh/id_rsa):</div><div class="line">Enter passphrase (empty <span class="keyword">for</span> no passphrase):</div><div class="line">Enter same passphrase again:</div><div class="line">Your identification has been saved <span class="keyword">in</span> /Users/oratun/.ssh/id_rsa.</div><div class="line">Your public key has been saved <span class="keyword">in</span> /Users/oratun/.ssh/id_rsa.pub.</div><div class="line">The key fingerprint is:</div><div class="line">$ cat ~/.ssh/id_rsa.pub <span class="comment">#将公钥添加到github上(Settings: SSH&amp;GPG keys)</span></div><div class="line">ssh-rsa ****</div></pre></td></tr></table></figure>
+        <h2 id="使用Hexo静态博客"><a href="#使用Hexo静态博客" class="headerlink" title="使用Hexo静态博客"></a>使用Hexo静态博客</h2><h3 id="安装npm："><a href="#安装npm：" class="headerlink" title="安装npm："></a>安装npm：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">brew update <span class="comment">#通过brew进行安装</span></div><div class="line">brew install npm</div></pre></td></tr></table></figure>
+<h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo:"></a>安装hexo:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo-cli</div></pre></td></tr></table></figure>
+<h3 id="新建本地站点："><a href="#新建本地站点：" class="headerlink" title="新建本地站点："></a>新建本地站点：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hexo init Blog <span class="comment">#使用Blog作为网站目录</span></div><div class="line"><span class="built_in">cd</span> Blog</div><div class="line">npm install</div><div class="line">hexo server <span class="comment">#访问 http://localhost:4000 查看demo</span></div></pre></td></tr></table></figure>
+<h3 id="创建文章："><a href="#创建文章：" class="headerlink" title="创建文章："></a>创建文章：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">'博客部署小记'</span></div><div class="line">$ hexo clean <span class="comment">#清除缓存</span></div><div class="line"><span class="comment"># 发布：</span></div><div class="line">$ hexo generate <span class="comment">#生成静态文件</span></div><div class="line">$ hexo server <span class="comment"># 运行一个本地服务</span></div><div class="line">Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.</div></pre></td></tr></table></figure>
+<h2 id="部署到Github-Pages："><a href="#部署到Github-Pages：" class="headerlink" title="部署到Github Pages："></a>部署到Github Pages：</h2><h3 id="生成ssh-key并添加到github："><a href="#生成ssh-key并添加到github：" class="headerlink" title="生成ssh key并添加到github："></a>生成ssh key并添加到github：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C warn1667@gmail.com <span class="comment">#在主目录下新建ssh key</span></div><div class="line">Generating public/private rsa key pair.</div><div class="line">Enter file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (/Users/oratun/.ssh/id_rsa):</div><div class="line">Enter passphrase (empty <span class="keyword">for</span> no passphrase):</div><div class="line">Enter same passphrase again:</div><div class="line">Your identification has been saved <span class="keyword">in</span> /Users/oratun/.ssh/id_rsa.</div><div class="line">Your public key has been saved <span class="keyword">in</span> /Users/oratun/.ssh/id_rsa.pub.</div><div class="line">The key fingerprint is:</div><div class="line">$ cat ~/.ssh/id_rsa.pub <span class="comment">#将公钥添加到github上(Settings: SSH&amp;GPG keys)</span></div><div class="line">ssh-rsa ****</div></pre></td></tr></table></figure>
 <h3 id="配置github-email-amp-name"><a href="#配置github-email-amp-name" class="headerlink" title="配置github email &amp; name"></a>配置github email &amp; name</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.email <span class="string">'email'</span></div><div class="line">$ git config --global user.name <span class="string">'username'</span></div></pre></td></tr></table></figure>
-<h2 id="安装hexo-deployer-git"><a href="#安装hexo-deployer-git" class="headerlink" title="安装hexo-deployer-git"></a>安装hexo-deployer-git</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deployer-git</div></pre></td></tr></table></figure>
-<h2 id="创建文章："><a href="#创建文章：" class="headerlink" title="创建文章："></a>创建文章：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">'博客部署小记'</span></div><div class="line">$ hexo clean <span class="comment">#清除缓存</span></div><div class="line"><span class="comment"># 发布：</span></div><div class="line">$ hexo g <span class="comment">#生成静态文件</span></div><div class="line">$ hexo d <span class="comment">#部署到github</span></div><div class="line"><span class="comment"># 可以简写为：</span></div><div class="line">$ hexo d -g</div></pre></td></tr></table></figure>
-<h3 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ vi <span class="built_in">source</span>/CNAME <span class="comment">#在source目录下新建名为CNAME的文件</span></div><div class="line">tongzhaohui.com <span class="comment">#:wq 保存并退出</span></div></pre></td></tr></table></figure>
-<p>修改_config.yml:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">url: http://tongzhaohui.com</div></pre></td></tr></table></figure></p>
+<h3 id="安装hexo-deployer-git"><a href="#安装hexo-deployer-git" class="headerlink" title="安装hexo-deployer-git"></a>安装hexo-deployer-git</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deployer-git</div></pre></td></tr></table></figure>
+<h3 id="发布到git-pages"><a href="#发布到git-pages" class="headerlink" title="发布到git pages"></a>发布到git pages</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div><div class="line">$ hexo g</div><div class="line">$ hexo d <span class="comment">#部署到github</span></div><div class="line"><span class="comment"># 可以简写为：</span></div><div class="line">$ hexo g -d</div></pre></td></tr></table></figure>
+<p>此时可以通过oratun.github.io访问到博客</p>
+<h2 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ vi <span class="built_in">source</span>/CNAME <span class="comment">#在source目录下新建名为CNAME的文件</span></div><div class="line">tongzhaohui.com <span class="comment">#:wq 保存并退出</span></div></pre></td></tr></table></figure>
+<p>编辑站点配置文件_config.yml:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">url: http://tongzhaohui.com</div></pre></td></tr></table></figure></p>
 <p>添加DNS解析:</p>
 <table>
 <thead>
@@ -344,10 +357,11 @@
 </tr>
 </tbody>
 </table>
-<h3 id="Sitemap"><a href="#Sitemap" class="headerlink" title="Sitemap"></a>Sitemap</h3><p>1.安装sitemap:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-generator-sitemap --save</div></pre></td></tr></table></figure></p>
-<p>2.编辑_config.yml,增加:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sitemap:</div><div class="line">  path: sitemap.xml</div></pre></td></tr></table></figure></p>
+<h2 id="使用Next主题"><a href="#使用Next主题" class="headerlink" title="使用Next主题"></a>使用Next主题</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">clone</span> https://github.com/iissnan/hexo-theme-next themes/next</div></pre></td></tr></table></figure>
+<h2 id="搜索与统计"><a href="#搜索与统计" class="headerlink" title="搜索与统计"></a>搜索与统计</h2><h3 id="Sitemap"><a href="#Sitemap" class="headerlink" title="Sitemap"></a>Sitemap</h3><p>1.安装sitemap:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-generator-sitemap --save</div></pre></td></tr></table></figure></p>
+<p>2.编辑站点配置文件_config.yml,增加:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sitemap:</div><div class="line">  path: sitemap.xml</div></pre></td></tr></table></figure></p>
 <h3 id="流量分析"><a href="#流量分析" class="headerlink" title="流量分析"></a>流量分析</h3><p>使用Google Analytics:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#编辑_config.yml</div><div class="line">google_analytics: 填写Tracking ID</div></pre></td></tr></table></figure></p>
-
+<h2 id="Disqus评论"><a href="#Disqus评论" class="headerlink" title="Disqus评论"></a>Disqus评论</h2>
       
     </div>
     
@@ -411,6 +425,15 @@
 
 
           
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
   
 
 
@@ -497,7 +520,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装npm："><span class="nav-number">1.</span> <span class="nav-text">安装npm：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装hexo"><span class="nav-number">2.</span> <span class="nav-text">安装hexo:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建站："><span class="nav-number">3.</span> <span class="nav-text">建站：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署到Github-pages："><span class="nav-number">4.</span> <span class="nav-text">部署到Github pages：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成ssh-key并添加到github："><span class="nav-number">5.</span> <span class="nav-text">生成ssh key并添加到github：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置github-email-amp-name"><span class="nav-number">5.1.</span> <span class="nav-text">配置github email & name</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装hexo-deployer-git"><span class="nav-number">6.</span> <span class="nav-text">安装hexo-deployer-git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建文章："><span class="nav-number">7.</span> <span class="nav-text">创建文章：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#绑定域名"><span class="nav-number">7.1.</span> <span class="nav-text">绑定域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sitemap"><span class="nav-number">7.2.</span> <span class="nav-text">Sitemap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流量分析"><span class="nav-number">7.3.</span> <span class="nav-text">流量分析</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Hexo静态博客"><span class="nav-number">1.</span> <span class="nav-text">使用Hexo静态博客</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装npm："><span class="nav-number">1.1.</span> <span class="nav-text">安装npm：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装hexo"><span class="nav-number">1.2.</span> <span class="nav-text">安装hexo:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新建本地站点："><span class="nav-number">1.3.</span> <span class="nav-text">新建本地站点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建文章："><span class="nav-number">1.4.</span> <span class="nav-text">创建文章：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署到Github-Pages："><span class="nav-number">2.</span> <span class="nav-text">部署到Github Pages：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#生成ssh-key并添加到github："><span class="nav-number">2.1.</span> <span class="nav-text">生成ssh key并添加到github：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置github-email-amp-name"><span class="nav-number">2.2.</span> <span class="nav-text">配置github email & name</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装hexo-deployer-git"><span class="nav-number">2.3.</span> <span class="nav-text">安装hexo-deployer-git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布到git-pages"><span class="nav-number">2.4.</span> <span class="nav-text">发布到git pages</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绑定域名"><span class="nav-number">3.</span> <span class="nav-text">绑定域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Next主题"><span class="nav-number">4.</span> <span class="nav-text">使用Next主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搜索与统计"><span class="nav-number">5.</span> <span class="nav-text">搜索与统计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Sitemap"><span class="nav-number">5.1.</span> <span class="nav-text">Sitemap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流量分析"><span class="nav-number">5.2.</span> <span class="nav-text">流量分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Disqus评论"><span class="nav-number">6.</span> <span class="nav-text">Disqus评论</span></a></li></ol></div>
             
 
           </div>
@@ -646,6 +669,26 @@
 
   
 
+    
+      <script id="dsq-count-scr" src="https://tongzhaohui.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://tongzhaohui.com/2017/09/30/博客部署小记/';
+          this.page.identifier = '2017/09/30/博客部署小记/';
+          this.page.title = '博客部署小记';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://tongzhaohui.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
 
 
 
@@ -658,10 +701,6 @@
   
 
 
-
-
-
-  
 
 
 
