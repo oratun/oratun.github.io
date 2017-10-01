@@ -8,10 +8,10 @@
   <meta name="description" content="安装npm：12brew updatebrew install npm 安装hexo:1npm install -g hexo-cli 建站：1234hexo init Blog #使用Blog作为网站目录cd Blognpm installhexo server #访问 http://localhost:4000 查看demo 部署到Github pages：生成ssh key并添加到githu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="博客部署小记">
-<meta property="og:url" content="http://yoursite.com/2017/09/30/博客部署小记/index.html">
+<meta property="og:url" content="http://tongzhaohui.com/2017/09/30/博客部署小记/index.html">
 <meta property="og:site_name" content="Oratun&#39;s Blog">
 <meta property="og:description" content="安装npm：12brew updatebrew install npm 安装hexo:1npm install -g hexo-cli 建站：1234hexo init Blog #使用Blog作为网站目录cd Blognpm installhexo server #访问 http://localhost:4000 查看demo 部署到Github pages：生成ssh key并添加到githu">
-<meta property="og:updated_time" content="2017-09-30T05:49:17.983Z">
+<meta property="og:updated_time" content="2017-10-01T08:26:59.556Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="博客部署小记">
 <meta name="twitter:description" content="安装npm：12brew updatebrew install npm 安装hexo:1npm install -g hexo-cli 建站：1234hexo init Blog #使用Blog作为网站目录cd Blognpm installhexo server #访问 http://localhost:4000 查看demo 部署到Github pages：生成ssh key并添加到githu">
@@ -57,7 +57,7 @@
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://tongzhaohui.com"></form>
       </div>
     </div>
   </div>
@@ -89,13 +89,20 @@
 <h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo:"></a>安装hexo:</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo-cli</div></pre></td></tr></table></figure>
 <h2 id="建站："><a href="#建站：" class="headerlink" title="建站："></a>建站：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hexo init Blog <span class="comment">#使用Blog作为网站目录</span></div><div class="line"><span class="built_in">cd</span> Blog</div><div class="line">npm install</div><div class="line">hexo server <span class="comment">#访问 http://localhost:4000 查看demo</span></div></pre></td></tr></table></figure>
 <h2 id="部署到Github-pages："><a href="#部署到Github-pages：" class="headerlink" title="部署到Github pages："></a>部署到Github pages：</h2><h2 id="生成ssh-key并添加到github："><a href="#生成ssh-key并添加到github：" class="headerlink" title="生成ssh key并添加到github："></a>生成ssh key并添加到github：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C warn1667@gmail.com <span class="comment">#在主目录下新建ssh key</span></div><div class="line">Generating public/private rsa key pair.</div><div class="line">Enter file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (/Users/oratun/.ssh/id_rsa):</div><div class="line">Enter passphrase (empty <span class="keyword">for</span> no passphrase):</div><div class="line">Enter same passphrase again:</div><div class="line">Your identification has been saved <span class="keyword">in</span> /Users/oratun/.ssh/id_rsa.</div><div class="line">Your public key has been saved <span class="keyword">in</span> /Users/oratun/.ssh/id_rsa.pub.</div><div class="line">The key fingerprint is:</div><div class="line">$ cat ~/.ssh/id_rsa.pub <span class="comment">#将公钥添加到github上(Settings: SSH&amp;GPG keys)</span></div><div class="line">ssh-rsa ****</div></pre></td></tr></table></figure>
+<h3 id="配置github-email-amp-name"><a href="#配置github-email-amp-name" class="headerlink" title="配置github email &amp; name"></a>配置github email &amp; name</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.email <span class="string">'email'</span></div><div class="line">$ git config --global user.name <span class="string">'username'</span></div></pre></td></tr></table></figure>
 <h2 id="安装hexo-deployer-git"><a href="#安装hexo-deployer-git" class="headerlink" title="安装hexo-deployer-git"></a>安装hexo-deployer-git</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deployer-git</div></pre></td></tr></table></figure>
-<h2 id="创建第一篇博文："><a href="#创建第一篇博文：" class="headerlink" title="创建第一篇博文："></a>创建第一篇博文：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">'博客部署小记'</span></div><div class="line">$ hexo clean <span class="comment">#清除缓存</span></div><div class="line">$ hexo g <span class="comment">#生成静态文件</span></div><div class="line">$ hexo d <span class="comment">#部署到github</span></div></pre></td></tr></table></figure>
+<h2 id="创建文章："><a href="#创建文章：" class="headerlink" title="创建文章："></a>创建文章：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">'博客部署小记'</span></div><div class="line">$ hexo clean <span class="comment">#清除缓存</span></div><div class="line"><span class="comment"># 发布：</span></div><div class="line">$ hexo g <span class="comment">#生成静态文件</span></div><div class="line">$ hexo d <span class="comment">#部署到github</span></div><div class="line"><span class="comment"># 可以简写为：</span></div><div class="line">$ hexo d -g</div></pre></td></tr></table></figure>
+<h3 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ vi <span class="built_in">source</span>/CNAME <span class="comment">#在source目录下新建名为CNAME的文件</span></div><div class="line">tongzhaohui.com <span class="comment">#:wq 保存并退出</span></div></pre></td></tr></table></figure>
+<p>修改_config.yml:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">url: http://tongzhaohui.com</div></pre></td></tr></table></figure></p>
+<p>添加DNS解析:<br>| 记录类型 | 主机记录 | 记录值            |<br>| :—-: | :—–: | :————–: |<br>| CNAME  | www     | oratun.github.io |<br>| A      | @       | 192.30.252.154   |<br>| A      | @       | 192.30.252.153   |</p>
+<h3 id="Sitemap"><a href="#Sitemap" class="headerlink" title="Sitemap"></a>Sitemap</h3><p>1.安装sitemap:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-generator-sitemap --save</div></pre></td></tr></table></figure></p>
+<p>2.编辑_config.yml,增加:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sitemap:</div><div class="line">  path: sitemap.xml</div></pre></td></tr></table></figure></p>
+<h3 id="流量分析"><a href="#流量分析" class="headerlink" title="流量分析"></a>流量分析</h3><p>使用Google Analytics:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#编辑_config.yml</div><div class="line">google_analytics: 填写Tracking ID</div></pre></td></tr></table></figure></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/09/30/博客部署小记/" data-id="cj8821lid0001y5l20bea8l62" class="article-share-link">Share</a>
+      <a data-url="http://tongzhaohui.com/2017/09/30/博客部署小记/" data-id="cj88hu6qb0000qfnc9wmf9a19" class="article-share-link">Share</a>
       
       
     </footer>
@@ -103,6 +110,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2017/10/01/使用Atom进行Markdown写作/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          使用Atom进行Markdown写作
+        
+      </div>
+    </a>
   
   
     <a href="/2017/09/30/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
@@ -131,7 +147,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li></ul>
     </div>
   </div>
 
@@ -142,6 +158,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/10/01/使用Atom进行Markdown写作/">使用Atom进行Markdown写作</a>
+          </li>
         
           <li>
             <a href="/2017/09/30/博客部署小记/">博客部署小记</a>
