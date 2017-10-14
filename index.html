@@ -251,6 +251,154 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://tongzhaohui.com/2017/10/14/树莓派的基本配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Oratun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Oratun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/14/树莓派的基本配置/" itemprop="url">树莓派的基本配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-14T14:56:27+08:00">
+                2017-10-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/14/树莓派的基本配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/14/树莓派的基本配置/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="树莓派初始配置"><a href="#树莓派初始配置" class="headerlink" title="树莓派初始配置"></a>树莓派初始配置</h2><p>sudo raspi-config</p>
+<h3 id="连接wifi"><a href="#连接wifi" class="headerlink" title="连接wifi"></a>连接wifi</h3><p>wifi: (jessie lite)</p>
+<ol>
+<li>树莓派通过网线连接路由器</li>
+<li>SSH登录树莓派,测试无线信号 sudo iwlist wlan0 scan</li>
+<li>配置无线网络<br>sudo nano /etc/wpa.conf<br>将下列内容复制进去<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">network=&#123;</div><div class="line">ssid=<span class="string">"WIFI的SSID"</span></div><div class="line">proto=RSN</div><div class="line">key_mgmt=WPA-PSK</div><div class="line">pairwise=CCMP TKIP</div><div class="line">group=CCMP TKIP</div><div class="line">psk=<span class="string">"WIFI的密码"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>接下来编辑网络配置文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">sudo nano /etc/network/interfaces</div><div class="line"></div><div class="line">auto lo</div><div class="line">iface lo inet loopback</div><div class="line">iface eth0 inet dhcp</div><div class="line">allow-hotplug wlan0</div><div class="line">iface wlan0 inet manual</div><div class="line">wpa-roam /etc/wpa.conf  &lt;---增加此行</div><div class="line"><span class="comment">#wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf   &lt;---注释掉此行</span></div><div class="line">iface default inet dhcp</div></pre></td></tr></table></figure></p>
+<p>保存，退出<br>重启树莓派，拔掉网线，它将自动连上无线网络。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/14/树莓派的基本配置/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      <div>
+         
+      </div>
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://tongzhaohui.com/2017/10/14/打造一台高性能Ryzen主机/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -333,7 +481,8 @@
       
         
           
-            <h2 id="配置单"><a href="#配置单" class="headerlink" title="配置单"></a>配置单</h2><table>
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近几年来，每年双十一商品价格优惠幅度都堪称年度之最，今年当然也不会例外。最近<em>绝地求生</em>这款游戏的火热，催生了大量的装机需求。眼看双十一就要到了，我也萌生了装一台高性能游戏主机的想法。</p>
+<h2 id="配置单"><a href="#配置单" class="headerlink" title="配置单"></a>配置单</h2><table>
 <thead>
 <tr>
 <th>配件</th>
@@ -344,32 +493,32 @@
 <tbody>
 <tr>
 <td>CPU</td>
-<td style="text-align:center"><a href="https://item.jd.com/4038531.html" target="_blank" rel="external">AMD Ryzen5 1600</a></td>
+<td style="text-align:center"><a href="https://item.jd.com/4038531.html" target="_blank" rel="external">AMD Ryzen5 1600 (京东)</a></td>
 <td style="text-align:center">1400</td>
 </tr>
 <tr>
 <td>主板</td>
-<td style="text-align:center"><a href="https://item.jd.com/4299363.html" target="_blank" rel="external">ROG Strix B350-F Gaming</a></td>
+<td style="text-align:center"><a href="https://item.jd.com/4299363.html" target="_blank" rel="external">ROG Strix B350-F Gaming (京东)</a></td>
 <td style="text-align:center">900</td>
 </tr>
 <tr>
 <td>显卡</td>
-<td style="text-align:center"><a href="https://item.jd.com/3491749.html" target="_blank" rel="external">昂达 GTX1066 神盾</a></td>
+<td style="text-align:center"><a href="https://item.jd.com/3491749.html" target="_blank" rel="external">昂达 GTX1066 神盾 (京东)</a></td>
 <td style="text-align:center">1700</td>
 </tr>
 <tr>
 <td>机箱</td>
-<td style="text-align:center"><a href="https://item.jd.com/4209217.html" target="_blank" rel="external">乔思伯U4 ATX 白色</a></td>
+<td style="text-align:center"><a href="https://item.jd.com/4209217.html" target="_blank" rel="external">乔思伯U4 ATX 白色 (京东)</a></td>
 <td style="text-align:center">300</td>
 </tr>
 <tr>
 <td>电源</td>
-<td style="text-align:center"><a href="https://item.jd.com/4796439.html" target="_blank" rel="external">海韵 FOCUS+550FX</a></td>
+<td style="text-align:center"><a href="https://item.jd.com/4796439.html" target="_blank" rel="external">海韵 FOCUS+550FX (京东)</a></td>
 <td style="text-align:center">600</td>
 </tr>
 <tr>
 <td>内存</td>
-<td style="text-align:center"><a href="https://www.amazon.com/Corsair-Vengeance-2x8GB-PC4-24000-CMR16GX4M2C3000C15/dp/B06XRFNWHK" target="_blank" rel="external">复仇者RGB灯条 DDR4 3000 8G*2 美亚</a></td>
+<td style="text-align:center"><a href="https://www.amazon.com/Corsair-Vengeance-2x8GB-PC4-24000-CMR16GX4M2C3000C15/dp/B06XRFNWHK" target="_blank" rel="external">海盗船复仇者RGB DDR4 3000 8G*2 (美亚)</a></td>
 <td style="text-align:center">1200</td>
 </tr>
 <tr>
@@ -379,7 +528,7 @@
 </tr>
 <tr>
 <td>散热</td>
-<td style="text-align:center">盒装CPU附带幽灵散热器</td>
+<td style="text-align:center">AMD幽灵散热器 (盒装CPU附带)</td>
 <td style="text-align:center">-</td>
 </tr>
 <tr>
@@ -406,6 +555,10 @@
 
     <footer class="post-footer">
       
+
+      <div>
+         
+      </div>
 
       
 
@@ -456,7 +609,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/07/树莓派与HomeKit智能家居/" itemprop="url">树莓派与HomeKit智能家居</a></h1>
+                <a class="post-title-link" href="/2017/10/07/树莓派与HomeKit智能家居/" itemprop="url">树莓派与HomeKit智能家庭</a></h1>
         
 
         <div class="post-meta">
@@ -518,36 +671,15 @@
 
       
         
-          
-            <p>前段时间入了一块树莓派Model 3B, 目的是实现在Pi上运行<strong>Homebridge</strong>来实现通过HomeKit控制家里的米家台灯、小米空气净化器2以及低成本的</p>
-<p>sudo raspi-config</p>
-<p>wifi: (jessie lite)<br>1.插入网卡，然后sudo lsusb 命令查看网卡是否插入成功<br>2.测试无线信号，sudo iwlist wlan0 scan<br>3.配置无线网络<br>sudo nano /etc/wpa.conf<br>将下列内容复制进去<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">network=&#123;</div><div class="line">ssid=<span class="string">"WIFI的SSID"</span></div><div class="line">proto=RSN</div><div class="line">key_mgmt=WPA-PSK</div><div class="line">pairwise=CCMP TKIP</div><div class="line">group=CCMP TKIP</div><div class="line">psk=<span class="string">"WIFI的密码"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>接下来编辑网络配置文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">sudo nano /etc/network/interfaces</div><div class="line"></div><div class="line">auto lo</div><div class="line">iface lo inet loopback</div><div class="line">iface eth0 inet dhcp</div><div class="line">allow-hotplug wlan0</div><div class="line">iface wlan0 inet manual</div><div class="line">wpa-roam /etc/wpa.conf  &lt;---增加此行</div><div class="line"><span class="comment">#wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf   &lt;---注释掉此行</span></div><div class="line">iface default inet dhcp</div></pre></td></tr></table></figure></p>
-<p>保存，退出<br>重启树莓派，拔掉网线，它将自动连上无线网络。</p>
-<p>VNC:<br>192.168.11.131:5900<br>设定分辨率：<br>vncserver :1 -geometry 1600x900</p>
-<h3 id="换源："><a href="#换源：" class="headerlink" title="换源："></a>换源：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ sudo nano /etc/apt/sources.list</div><div class="line"></div><div class="line">deb http://mirrors.aliyun.com/raspbian/raspbian/ jessie main non-free contrib</div><div class="line">deb-src http://mirrors.aliyun.com/raspbian/raspbian/ jessie main non-free contrib</div><div class="line">按键 ctrl+o, return, ctrl+x 退出</div><div class="line"></div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get upgrade</div></pre></td></tr></table></figure>
-<h3 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js:"></a>安装Node.js:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ wget https://nodejs.org/dist/v4.3.2/node-v4.3.2-linux-armv6l.tar.gz</div><div class="line">$ tar -xvf node-v4.3.2-linux-armv6l.tar.gz</div><div class="line">$ cd node-v4.3.2-linux-armv6l</div><div class="line">$ sudo cp -R * /usr/local/</div></pre></td></tr></table></figure>
-<h3 id="安装Avahi："><a href="#安装Avahi：" class="headerlink" title="安装Avahi："></a>安装Avahi：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get -f remove libdbus-1-3</div><div class="line">$ sudo apt-get install aptitude</div><div class="line">$ sudo aptitude install libavahi-compat-libdnssd-dev</div><div class="line"></div><div class="line">安装Homebridge：</div><div class="line">sudo npm install -g --unsafe-perm homebridge</div><div class="line">sudo npm install -g homebridge-mi-aqara</div><div class="line">sudo npm install -g homebridge-yeelight</div></pre></td></tr></table></figure>
-<h3 id="更新插件"><a href="#更新插件" class="headerlink" title="更新插件"></a>更新插件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#查看过时插件</span></div><div class="line">npm -g outdated</div><div class="line"><span class="comment">#更新到最新版本</span></div><div class="line">sudo npm update homebridge -g --unsafe-perm</div></pre></td></tr></table></figure>
-<p>编辑配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">$ nano /home/pi/.homebridge/config.json</div><div class="line"></div><div class="line">&#123;</div><div class="line">    &quot;bridge&quot;: &#123;</div><div class="line">        &quot;name&quot;: &quot;Homebridge&quot;,</div><div class="line">        &quot;username&quot;: &quot;CC:22:3D:E3:CE:30&quot;,</div><div class="line">        &quot;port&quot;: 51826,</div><div class="line">        &quot;pin&quot;: &quot;451-54-130&quot;</div><div class="line">    &#125;,</div><div class="line">    &quot;platforms&quot;: [&#123;</div><div class="line">        &quot;platform&quot;: &quot;MiAqaraPlatform&quot;,</div><div class="line">        &quot;sid&quot;: [&quot;34ce008be61c&quot;],</div><div class="line">        &quot;password&quot;: [&quot;ADE5EA05091A4D30&quot;]&#125;,</div><div class="line">        &#123;</div><div class="line">        &quot;platform&quot;: &quot;yeelight&quot;,</div><div class="line">        &quot;name&quot;: &quot;yeelight&quot;</div><div class="line">        &#125;],</div><div class="line">    &quot;accessories&quot;: [</div><div class="line">    &#123;</div><div class="line">      &quot;accessory&quot;: &quot;XiaoMiAirPurifier&quot;,</div><div class="line">      &quot;name&quot;: &quot;Air Purifier&quot;,</div><div class="line">      &quot;showTemperature&quot;: true,</div><div class="line">      &quot;showHumidity&quot;: true,</div><div class="line">      &quot;showAirQuality&quot;: true,</div><div class="line">      &quot;address&quot;: &quot;192.168.11.133&quot;,</div><div class="line">      &quot;token&quot;: &quot;7d52f6dfebe6c27990dfddaf9d0c037d&quot;,</div><div class="line">      &quot;model&quot;: &quot;zhimi.airpurifier.m1&quot;</div><div class="line">    &#125;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>通过 (init.d) 来开机运行 Homebridge：<br>sudo vi /etc/init.d/homebridge<br>粘贴以下内容：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line"><span class="comment">### BEGIN INIT INFO</span></div><div class="line"><span class="comment"># Provides: homebridge</span></div><div class="line"><span class="comment"># Required-Start:    $network $remote_fs $syslog</span></div><div class="line"><span class="comment"># Required-Stop:     $remote_fs $syslog</span></div><div class="line"><span class="comment"># Default-Start:     2 3 4 5</span></div><div class="line"><span class="comment"># Default-Stop:      0 1 6</span></div><div class="line"><span class="comment"># Short-Description: Start daemon at boot time</span></div><div class="line"><span class="comment"># Description:       Enable service provided by daemon.</span></div><div class="line"><span class="comment">### END INIT INFO</span></div><div class="line"></div><div class="line">dir=<span class="string">"/home/pi"</span></div><div class="line">cmd=<span class="string">"DEBUG=* /usr/bin/homebridge"</span></div><div class="line">user=<span class="string">"pi"</span></div><div class="line"></div><div class="line">name=`basename <span class="variable">$0</span>`</div><div class="line">pid_file=<span class="string">"/var/run/<span class="variable">$name</span>.pid"</span></div><div class="line">stdout_log=<span class="string">"/var/log/<span class="variable">$name</span>.log"</span></div><div class="line">stderr_log=<span class="string">"/var/log/<span class="variable">$name</span>.err"</span></div><div class="line"></div><div class="line"><span class="function"><span class="title">get_pid</span></span>() &#123;</div><div class="line">    cat <span class="string">"<span class="variable">$pid_file</span>"</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="title">is_running</span></span>() &#123;</div><div class="line">    [ -f <span class="string">"<span class="variable">$pid_file</span>"</span> ] &amp;&amp; ps `get_pid` &gt; /dev/null 2&gt;&amp;1</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">case</span> <span class="string">"<span class="variable">$1</span>"</span> <span class="keyword">in</span></div><div class="line">    start)</div><div class="line">    <span class="keyword">if</span> is_running; <span class="keyword">then</span></div><div class="line">        <span class="built_in">echo</span> <span class="string">"Already started"</span></div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="built_in">echo</span> <span class="string">"Starting <span class="variable">$name</span>"</span></div><div class="line">        <span class="built_in">cd</span> <span class="string">"<span class="variable">$dir</span>"</span></div><div class="line">        <span class="keyword">if</span> [ -z <span class="string">"<span class="variable">$user</span>"</span> ]; <span class="keyword">then</span></div><div class="line">            sudo <span class="variable">$cmd</span> &gt;&gt; <span class="string">"<span class="variable">$stdout_log</span>"</span> 2&gt;&gt; <span class="string">"<span class="variable">$stderr_log</span>"</span> &amp;</div><div class="line">        <span class="keyword">else</span></div><div class="line">            sudo -u <span class="string">"<span class="variable">$user</span>"</span> <span class="variable">$cmd</span> &gt;&gt; <span class="string">"<span class="variable">$stdout_log</span>"</span> 2&gt;&gt; <span class="string">"<span class="variable">$stderr_log</span>"</span> &amp;</div><div class="line">        <span class="keyword">fi</span></div><div class="line">        <span class="built_in">echo</span> $! &gt; <span class="string">"<span class="variable">$pid_file</span>"</span></div><div class="line">        <span class="keyword">if</span> ! is_running; <span class="keyword">then</span></div><div class="line">            <span class="built_in">echo</span> <span class="string">"Unable to start, see <span class="variable">$stdout_log</span> and <span class="variable">$stderr_log</span>"</span></div><div class="line">            <span class="built_in">exit</span> 1</div><div class="line">        <span class="keyword">fi</span></div><div class="line">    <span class="keyword">fi</span></div><div class="line">    ;;</div><div class="line">    stop)</div><div class="line">    <span class="keyword">if</span> is_running; <span class="keyword">then</span></div><div class="line">        <span class="built_in">echo</span> -n <span class="string">"Stopping <span class="variable">$name</span>.."</span></div><div class="line">        <span class="built_in">kill</span> `get_pid`</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> &#123;1..10&#125;</div><div class="line">        <span class="keyword">do</span></div><div class="line">            <span class="keyword">if</span> ! is_running; <span class="keyword">then</span></div><div class="line">                <span class="built_in">break</span></div><div class="line">            <span class="keyword">fi</span></div><div class="line"></div><div class="line">            <span class="built_in">echo</span> -n <span class="string">"."</span></div><div class="line">            sleep 1</div><div class="line">        <span class="keyword">done</span></div><div class="line">        <span class="built_in">echo</span></div><div class="line"></div><div class="line">        <span class="keyword">if</span> is_running; <span class="keyword">then</span></div><div class="line">            <span class="built_in">echo</span> <span class="string">"Not stopped; may still be shutting down or shutdown may have failed"</span></div><div class="line">            <span class="built_in">exit</span> 1</div><div class="line">        <span class="keyword">else</span></div><div class="line">            <span class="built_in">echo</span> <span class="string">"Stopped"</span></div><div class="line">            <span class="keyword">if</span> [ -f <span class="string">"<span class="variable">$pid_file</span>"</span> ]; <span class="keyword">then</span></div><div class="line">                rm <span class="string">"<span class="variable">$pid_file</span>"</span></div><div class="line">            <span class="keyword">fi</span></div><div class="line">        <span class="keyword">fi</span></div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="built_in">echo</span> <span class="string">"Not running"</span></div><div class="line">    <span class="keyword">fi</span></div><div class="line">    ;;</div><div class="line">    restart)</div><div class="line">    <span class="variable">$0</span> stop</div><div class="line">    <span class="keyword">if</span> is_running; <span class="keyword">then</span></div><div class="line">        <span class="built_in">echo</span> <span class="string">"Unable to stop, will not attempt to start"</span></div><div class="line">        <span class="built_in">exit</span> 1</div><div class="line">    <span class="keyword">fi</span></div><div class="line">    <span class="variable">$0</span> start</div><div class="line">    ;;</div><div class="line">    status)</div><div class="line">    <span class="keyword">if</span> is_running; <span class="keyword">then</span></div><div class="line">        <span class="built_in">echo</span> <span class="string">"Running"</span></div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="built_in">echo</span> <span class="string">"Stopped"</span></div><div class="line">        <span class="built_in">exit</span> 1</div><div class="line">    <span class="keyword">fi</span></div><div class="line">    ;;</div><div class="line">    *)</div><div class="line">    <span class="built_in">echo</span> <span class="string">"Usage: <span class="variable">$0</span> &#123;start|stop|restart|status&#125;"</span></div><div class="line">    <span class="built_in">exit</span> 1</div><div class="line">    ;;</div><div class="line"><span class="keyword">esac</span></div><div class="line"></div><div class="line"><span class="built_in">exit</span> 0</div></pre></td></tr></table></figure></p>
-<p>保存，退出，运行下面的命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo chmod 755 /etc/init.d/homebridge</div><div class="line">sudo update-rc.d homebridge defaults</div></pre></td></tr></table></figure></p>
-<p>手动的开启服务：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo /etc/init.d/homebridge start</div><div class="line">查看log 和 error：</div><div class="line">tail -f /var/log/homebridge.log</div><div class="line">tail -f /var/log/homebridge.err</div></pre></td></tr></table></figure></p>
-<p>小米空气净化器2：<br>查看所有小米设备：<br>miio –discover</p>
-<p>Device ID: 61261267<br>Model info: zhimi.airpurifier.m1 (air-purifier)<br>Address: 192.168.11.133 (zhimi-airpurifier-m1_miio61261267)<br>Token: 7d52f6dfebe6c27990dfddaf9d0c037d via auto-token<br>Support: At least basic</p>
-<h2 id="查看CPU温度："><a href="#查看CPU温度：" class="headerlink" title="查看CPU温度："></a>查看CPU温度：</h2><h3 id="建立脚本："><a href="#建立脚本：" class="headerlink" title="建立脚本："></a>建立脚本：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo nano get.py</div></pre></td></tr></table></figure>
-<h3 id="贴入Python代码："><a href="#贴入Python代码：" class="headerlink" title="贴入Python代码："></a>贴入Python代码：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> os</div><div class="line"></div><div class="line"><span class="comment"># Return CPU temperature as a character string                                     </span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getCPUtemperature</span><span class="params">()</span>:</span></div><div class="line">    res = os.popen(<span class="string">'vcgencmd measure_temp'</span>).readline()</div><div class="line">    <span class="keyword">return</span>(res.replace(<span class="string">"temp="</span>,<span class="string">""</span>).replace(<span class="string">"'C\n"</span>,<span class="string">""</span>))</div><div class="line"></div><div class="line"><span class="comment"># Return RAM information (unit=kb) in a list</span></div><div class="line"><span class="comment"># Index 0: total RAM</span></div><div class="line"><span class="comment"># Index 1: used RAM</span></div><div class="line"><span class="comment"># Index 2: free RAM</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getRAMinfo</span><span class="params">()</span>:</span></div><div class="line">    p = os.popen(<span class="string">'free'</span>)</div><div class="line">    i = <span class="number">0</span></div><div class="line">    <span class="keyword">while</span> <span class="number">1</span>:</div><div class="line">        i = i + <span class="number">1</span></div><div class="line">        line = p.readline()</div><div class="line">        <span class="keyword">if</span> i==<span class="number">2</span>:</div><div class="line">            <span class="keyword">return</span>(line.split()[<span class="number">1</span>:<span class="number">4</span>])</div><div class="line"></div><div class="line"><span class="comment"># Return % of CPU used by user as a character string                               </span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getCPUuse</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">return</span>(str(os.popen(<span class="string">"top -n1 | awk '/Cpu\(s\):/ &#123;print $2&#125;'"</span>).readline().strip()))</div><div class="line"></div><div class="line"><span class="comment"># Return information about disk space as a list (unit included)                    </span></div><div class="line"><span class="comment"># Index 0: total disk space                                                  </span></div><div class="line"><span class="comment"># Index 1: used disk space                                                        </span></div><div class="line"><span class="comment"># Index 2: remaining disk space                                                    </span></div><div class="line"><span class="comment"># Index 3: percentage of disk used                                                 </span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getDiskSpace</span><span class="params">()</span>:</span></div><div class="line">    p = os.popen(<span class="string">"df -h /"</span>)</div><div class="line">    i = <span class="number">0</span></div><div class="line">    <span class="keyword">while</span> <span class="number">1</span>:</div><div class="line">        i = i +<span class="number">1</span></div><div class="line">        line = p.readline()</div><div class="line">        <span class="keyword">if</span> i==<span class="number">2</span>:</div><div class="line">            <span class="keyword">return</span>(line.split()[<span class="number">1</span>:<span class="number">5</span>])</div><div class="line"></div><div class="line"><span class="comment"># CPU informatiom</span></div><div class="line">CPU_temp = getCPUtemperature()</div><div class="line">CPU_usage = getCPUuse()</div><div class="line"></div><div class="line"><span class="comment"># RAM information</span></div><div class="line"><span class="comment"># Output is in kb, here I convert it in Mb for readability</span></div><div class="line">RAM_stats = getRAMinfo()</div><div class="line">RAM_total = round(int(RAM_stats[<span class="number">0</span>]) / <span class="number">1000</span>,<span class="number">1</span>)</div><div class="line">RAM_used = round(int(RAM_stats[<span class="number">1</span>]) / <span class="number">1000</span>,<span class="number">1</span>)</div><div class="line">RAM_free = round(int(RAM_stats[<span class="number">2</span>]) / <span class="number">1000</span>,<span class="number">1</span>)</div><div class="line"></div><div class="line"><span class="comment"># Disk information</span></div><div class="line">DISK_stats = getDiskSpace()</div><div class="line">DISK_total = DISK_stats[<span class="number">0</span>]</div><div class="line">DISK_used = DISK_stats[<span class="number">1</span>]</div><div class="line">DISK_perc = DISK_stats[<span class="number">3</span>]</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    print(<span class="string">''</span>)</div><div class="line">    print(<span class="string">'CPU Temperature = '</span>+CPU_temp)</div><div class="line">    print(<span class="string">'CPU Use = '</span>+CPU_usage)</div><div class="line">    print(<span class="string">''</span>)</div><div class="line">    print(<span class="string">'RAM Total = '</span>+str(RAM_total)+<span class="string">' MB'</span>)</div><div class="line">    print(<span class="string">'RAM Used = '</span>+str(RAM_used)+<span class="string">' MB'</span>)</div><div class="line">    print(<span class="string">'RAM Free = '</span>+str(RAM_free)+<span class="string">' MB'</span>)</div><div class="line">    print(<span class="string">''</span>)</div><div class="line">    print(<span class="string">'DISK Total Space = '</span>+str(DISK_total)+<span class="string">'B'</span>)</div><div class="line">    print(<span class="string">'DISK Used Space = '</span>+str(DISK_used)+<span class="string">'B'</span>)</div><div class="line">    print(<span class="string">'DISK Used Percentage = '</span>+str(DISK_perc))</div></pre></td></tr></table></figure>
-<p>然后执行：<br>chmod +x get.py<br>python get.py<br>预期输出结果如下：</p>
-<p>CPU Temperature = 53.0<br>CPU Use = 13.5</p>
-<p>RAM Total = 497.0 MB<br>RAM Used = 116.0 MB<br>RAM Free = 381.0 MB</p>
-<p>DISK Total Space = 3.6GB<br>DISK Used Space = 1.8GB<br>DISK Used Percentage = 53%</p>
-<h2 id="风扇PWM调速"><a href="#风扇PWM调速" class="headerlink" title="风扇PWM调速"></a>风扇PWM调速</h2><p>树莓派的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># nano fan.py</span></div><div class="line"><span class="keyword">import</span> RPi.GPIO</div><div class="line">RPi.GPIO.setmode(RPi.GPIO.BCM)</div><div class="line">RPi.GPIO.setup(<span class="number">2</span>, RPi.GPIO.OUT)</div><div class="line">pwm = RPi.GPIO.PWM(<span class="number">2</span>,<span class="number">100</span>)</div><div class="line">RPi.GPIO.setwarnings(<span class="keyword">False</span>)</div><div class="line">pwm.start(<span class="number">0</span>)</div><div class="line">pwm.ChangeDutyCycle(<span class="number">40</span>)</div></pre></td></tr></table></figure></p>
-<p>查看python进程id：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps -ef |grep python</div></pre></td></tr></table></figure></p>
-<p>杀死pid为1180的进程：<br>kill -s 9 1180</p>
-<p>GPIO BCM 2;</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># encoding: utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> RPi.GPIO</div><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line">start = <span class="number">45</span></div><div class="line">stop = <span class="number">35</span></div><div class="line"></div><div class="line">RPi.GPIO.setwarnings(<span class="keyword">False</span>)</div><div class="line">RPi.GPIO.setmode(RPi.GPIO.BCM)</div><div class="line">RPi.GPIO.setup(<span class="number">2</span>, RPi.GPIO.OUT)</div><div class="line">pwm = RPi.GPIO.PWM(<span class="number">2</span>, <span class="number">25</span>) <span class="comment">#GPIO channel 2, frequency 25</span></div><div class="line">fan = <span class="keyword">False</span></div><div class="line">pwm.start(<span class="number">35</span>) <span class="comment">#初始空比35(范围0~100)</span></div><div class="line"></div><div class="line"><span class="keyword">try</span>:</div><div class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">        <span class="keyword">with</span> open(<span class="string">'/sys/class/thermal/thermal_zone0/temp'</span>) <span class="keyword">as</span> f:</div><div class="line">            cur = int(f.read()) / <span class="number">1000</span></div><div class="line">            now = time.strftime(<span class="string">"%H:%M:%S"</span>,time.localtime(time.time()))</div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> fan <span class="keyword">and</span> cur &gt;= start:</div><div class="line">                pwm.start(<span class="number">80</span>)</div><div class="line">                fan = <span class="keyword">True</span></div><div class="line">                <span class="comment">#print("[%s] Fan on @ %s" % (now, cur))</span></div><div class="line">            <span class="keyword">if</span> fan <span class="keyword">and</span> cur &lt;= stop:</div><div class="line">                <span class="comment">#pwm.stop()</span></div><div class="line">                pwm.start(<span class="number">30</span>)</div><div class="line">                fan = <span class="keyword">False</span></div><div class="line">                <span class="comment">#print("[%s] Fan off @ %s" % (now, cur))</span></div></pre></td></tr></table></figure>
-
-          
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前段时间入了一块树莓派Model 3B, 目的是实现在Pi上运行兼容HomeKit协议的<strong>Homebridge</strong>插件进而实现用Siri控制家里的米家台灯、小米空气净化器2等硬件的目的.</p>
+<h2 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h2><h3 id="换源："><a href="#换源：" class="headerlink" title="换源："></a>换源：</h3><p>由于某些原因,使用默认的源下载可能不太稳定<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ sudo nano /etc/apt/sources.list</div><div class="line"><span class="comment"># 添加以下内容</span></div><div class="line">deb http://mirrors.aliyun.com/raspbian/raspbian/ jessie main non-free contrib</div><div class="line">deb-src http://mirrors.aliyun.com/raspbian/raspbian/ jessie main non-free contrib</div><div class="line"><span class="comment"># 按ctrl+o, 回车, ctrl+x 退出</span></div><div class="line"><span class="comment"># 更新列表</span></div><div class="line">$ sudo apt-get update</div><div class="line">$ sudo apt-get upgrade</div></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/07/树莓派与HomeKit智能家居/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -563,6 +695,10 @@
 
     <footer class="post-footer">
       
+
+      <div>
+         
+      </div>
 
       
 
@@ -703,6 +839,10 @@
     <footer class="post-footer">
       
 
+      <div>
+         
+      </div>
+
       
 
       
@@ -814,58 +954,17 @@
 
       
         
-          
-            <h2 id="使用Hexo静态博客"><a href="#使用Hexo静态博客" class="headerlink" title="使用Hexo静态博客"></a>使用Hexo静态博客</h2><h3 id="安装npm："><a href="#安装npm：" class="headerlink" title="安装npm："></a>安装npm：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">brew update <span class="comment">#通过brew进行安装</span></div><div class="line">brew install npm</div></pre></td></tr></table></figure>
+          <h2 id="使用Hexo静态博客"><a href="#使用Hexo静态博客" class="headerlink" title="使用Hexo静态博客"></a>使用Hexo静态博客</h2><h3 id="安装npm："><a href="#安装npm：" class="headerlink" title="安装npm："></a>安装npm：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">brew update <span class="comment">#通过brew进行安装</span></div><div class="line">brew install npm</div></pre></td></tr></table></figure>
 <h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo:"></a>安装hexo:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo-cli</div></pre></td></tr></table></figure>
 <h3 id="新建本地站点："><a href="#新建本地站点：" class="headerlink" title="新建本地站点："></a>新建本地站点：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hexo init Blog <span class="comment">#使用Blog作为网站目录</span></div><div class="line"><span class="built_in">cd</span> Blog</div><div class="line">npm install</div><div class="line">hexo server <span class="comment">#访问 http://localhost:4000 查看demo</span></div></pre></td></tr></table></figure>
 <h3 id="创建文章："><a href="#创建文章：" class="headerlink" title="创建文章："></a>创建文章：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">'博客部署小记'</span></div><div class="line">$ hexo clean <span class="comment">#清除缓存</span></div><div class="line"><span class="comment"># 发布：</span></div><div class="line">$ hexo generate <span class="comment">#生成静态文件</span></div><div class="line">$ hexo server <span class="comment"># 运行一个本地服务</span></div><div class="line">Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.</div></pre></td></tr></table></figure>
-<h2 id="部署到Github-Pages："><a href="#部署到Github-Pages：" class="headerlink" title="部署到Github Pages："></a>部署到Github Pages：</h2><h3 id="生成ssh-key并添加到github："><a href="#生成ssh-key并添加到github：" class="headerlink" title="生成ssh key并添加到github："></a>生成ssh key并添加到github：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C warn1667@gmail.com <span class="comment">#在主目录下新建ssh key</span></div><div class="line">Generating public/private rsa key pair.</div><div class="line">Enter file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (/Users/oratun/.ssh/id_rsa):</div><div class="line">Enter passphrase (empty <span class="keyword">for</span> no passphrase):</div><div class="line">Enter same passphrase again:</div><div class="line">Your identification has been saved <span class="keyword">in</span> /Users/oratun/.ssh/id_rsa.</div><div class="line">Your public key has been saved <span class="keyword">in</span> /Users/oratun/.ssh/id_rsa.pub.</div><div class="line">The key fingerprint is:</div><div class="line">$ cat ~/.ssh/id_rsa.pub <span class="comment">#将公钥添加到github上(Settings: SSH&amp;GPG keys)</span></div><div class="line">ssh-rsa ****</div></pre></td></tr></table></figure>
-<h3 id="配置github-email-amp-name"><a href="#配置github-email-amp-name" class="headerlink" title="配置github email &amp; name"></a>配置github email &amp; name</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.email <span class="string">'email'</span></div><div class="line">$ git config --global user.name <span class="string">'username'</span></div></pre></td></tr></table></figure>
-<h3 id="安装hexo-deployer-git"><a href="#安装hexo-deployer-git" class="headerlink" title="安装hexo-deployer-git"></a>安装hexo-deployer-git</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deployer-git</div></pre></td></tr></table></figure>
-<h3 id="发布到git-pages"><a href="#发布到git-pages" class="headerlink" title="发布到git pages"></a>发布到git pages</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div><div class="line">$ hexo g</div><div class="line">$ hexo d <span class="comment">#部署到github</span></div><div class="line"><span class="comment"># 可以简写为：</span></div><div class="line">$ hexo g -d</div></pre></td></tr></table></figure>
-<p>此时可以通过oratun.github.io访问到博客</p>
-<h2 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ vi <span class="built_in">source</span>/CNAME <span class="comment">#在source目录下新建名为CNAME的文件</span></div><div class="line">tongzhaohui.com <span class="comment">#:wq 保存并退出</span></div></pre></td></tr></table></figure>
-<p>编辑站点配置文件_config.yml:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">url: http://tongzhaohui.com</div></pre></td></tr></table></figure></p>
-<p>添加DNS解析:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">记录类型</th>
-<th style="text-align:center">主机记录</th>
-<th style="text-align:center">记录值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">CNAME</td>
-<td style="text-align:center">www</td>
-<td style="text-align:center">oratun.github.io</td>
-</tr>
-<tr>
-<td style="text-align:center">A</td>
-<td style="text-align:center">@</td>
-<td style="text-align:center">192.30.252.154</td>
-</tr>
-<tr>
-<td style="text-align:center">A</td>
-<td style="text-align:center">@</td>
-<td style="text-align:center">192.30.252.153</td>
-</tr>
-</tbody>
-</table>
-<h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>这里使用next主题<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">clone</span> https://github.com/iissnan/hexo-theme-next themes/next</div></pre></td></tr></table></figure></p>
-<h2 id="搜索与统计"><a href="#搜索与统计" class="headerlink" title="搜索与统计"></a>搜索与统计</h2><h3 id="Sitemap"><a href="#Sitemap" class="headerlink" title="Sitemap"></a>Sitemap</h3><p>1.安装sitemap:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-generator-sitemap --save</div></pre></td></tr></table></figure></p>
-<p>2.编辑<strong>站点配置文件</strong>,增加:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sitemap:</div><div class="line">  path: sitemap.xml</div></pre></td></tr></table></figure></p>
-<h3 id="流量分析"><a href="#流量分析" class="headerlink" title="流量分析"></a>流量分析</h3><p>###使用Google Analytics:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#编辑_config.yml</div><div class="line">google_analytics: 填写Tracking ID</div></pre></td></tr></table></figure></p>
-<h4 id="使用Google-Search-Console"><a href="#使用Google-Search-Console" class="headerlink" title="使用Google Search Console:"></a>使用Google Search Console:</h4><ol>
-<li>填写要监控的域名</li>
-<li>验证站点所有权,这里选择上传认证html文件到站点上的方式</li>
-<li>将下载的html文件保存到themes/next/source目录</li>
-<li>重新部署后点击验证</li>
-</ol>
-<h2 id="Disqus评论"><a href="#Disqus评论" class="headerlink" title="Disqus评论"></a>Disqus评论</h2><p>因为是静态博客, 所以使用第三方评论服务Disqus<br>注册后获得一个disqus name: tongzhaohui<br>将其填写到<strong>主题配置文件</strong>中.</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/07/博客部署小记/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -881,6 +980,10 @@
 
     <footer class="post-footer">
       
+
+      <div>
+         
+      </div>
 
       
 
@@ -1021,6 +1124,10 @@
     <footer class="post-footer">
       
 
+      <div>
+         
+      </div>
+
       
 
       
@@ -1084,7 +1191,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

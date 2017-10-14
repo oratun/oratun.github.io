@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="树莓派初始配置sudo raspi-config 连接wifiwifi: (jessie lite)  树莓派通过网线连接路由器 SSH登录树莓派,测试无线信号 sudo iwlist wlan0 scan 配置无线网络sudo nano /etc/wpa.conf将下列内容复制进去12345678network=&amp;#123;ssid=&quot;WIFI的SSID&quot;proto=RSNkey_mgmt=WP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树莓派的基本配置">
+<meta property="og:url" content="http://tongzhaohui.com/2017/10/14/树莓派的基本配置/index.html">
+<meta property="og:site_name" content="Oratun&#39;s Blog">
+<meta property="og:description" content="树莓派初始配置sudo raspi-config 连接wifiwifi: (jessie lite)  树莓派通过网线连接路由器 SSH登录树莓派,测试无线信号 sudo iwlist wlan0 scan 配置无线网络sudo nano /etc/wpa.conf将下列内容复制进去12345678network=&amp;#123;ssid=&quot;WIFI的SSID&quot;proto=RSNkey_mgmt=WP">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-14T10:47:26.319Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="树莓派的基本配置">
+<meta name="twitter:description" content="树莓派初始配置sudo raspi-config 连接wifiwifi: (jessie lite)  树莓派通过网线连接路由器 SSH登录树莓派,测试无线信号 sudo iwlist wlan0 scan 配置无线网络sudo nano /etc/wpa.conf将下列内容复制进去12345678network=&amp;#123;ssid=&quot;WIFI的SSID&quot;proto=RSNkey_mgmt=WP">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://tongzhaohui.com/2017/10/14/树莓派的基本配置/"/>
+
+
+
+
+
+  <title>树莓派的基本配置 | Oratun's Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-107341316-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Oratun's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://tongzhaohui.com/2017/10/14/树莓派的基本配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Oratun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Oratun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">树莓派的基本配置</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-14T14:56:27+08:00">
+                2017-10-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/14/树莓派的基本配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/14/树莓派的基本配置/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="树莓派初始配置"><a href="#树莓派初始配置" class="headerlink" title="树莓派初始配置"></a>树莓派初始配置</h2><p>sudo raspi-config</p>
+<h3 id="连接wifi"><a href="#连接wifi" class="headerlink" title="连接wifi"></a>连接wifi</h3><p>wifi: (jessie lite)</p>
+<ol>
+<li>树莓派通过网线连接路由器</li>
+<li>SSH登录树莓派,测试无线信号 sudo iwlist wlan0 scan</li>
+<li>配置无线网络<br>sudo nano /etc/wpa.conf<br>将下列内容复制进去<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">network=&#123;</div><div class="line">ssid=<span class="string">"WIFI的SSID"</span></div><div class="line">proto=RSN</div><div class="line">key_mgmt=WPA-PSK</div><div class="line">pairwise=CCMP TKIP</div><div class="line">group=CCMP TKIP</div><div class="line">psk=<span class="string">"WIFI的密码"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>接下来编辑网络配置文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">sudo nano /etc/network/interfaces</div><div class="line"></div><div class="line">auto lo</div><div class="line">iface lo inet loopback</div><div class="line">iface eth0 inet dhcp</div><div class="line">allow-hotplug wlan0</div><div class="line">iface wlan0 inet manual</div><div class="line">wpa-roam /etc/wpa.conf  &lt;---增加此行</div><div class="line"><span class="comment">#wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf   &lt;---注释掉此行</span></div><div class="line">iface default inet dhcp</div></pre></td></tr></table></figure></p>
+<p>保存，退出<br>重启树莓派，拔掉网线，它将自动连上无线网络。<br><a id="more"></a><br>VNC:<br>192.168.11.131:5900<br>设定分辨率：<br>vncserver :1 -geometry 1600x900</p>
+<h2 id="查看CPU温度："><a href="#查看CPU温度：" class="headerlink" title="查看CPU温度："></a>查看CPU温度：</h2><p>通过Python脚本可以方便地查看CPU温度，CPU、内存以及硬盘使用率</p>
+<h3 id="建立脚本："><a href="#建立脚本：" class="headerlink" title="建立脚本："></a>建立脚本：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo nano get.py</div></pre></td></tr></table></figure>
+<h3 id="贴入Python代码："><a href="#贴入Python代码：" class="headerlink" title="贴入Python代码："></a>贴入Python代码：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> os</div><div class="line"></div><div class="line"><span class="comment"># Return CPU temperature as a character string                                     </span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getCPUtemperature</span><span class="params">()</span>:</span></div><div class="line">    res = os.popen(<span class="string">'vcgencmd measure_temp'</span>).readline()</div><div class="line">    <span class="keyword">return</span>(res.replace(<span class="string">"temp="</span>,<span class="string">""</span>).replace(<span class="string">"'C\n"</span>,<span class="string">""</span>))</div><div class="line"></div><div class="line"><span class="comment"># Return RAM information (unit=kb) in a list</span></div><div class="line"><span class="comment"># Index 0: total RAM</span></div><div class="line"><span class="comment"># Index 1: used RAM</span></div><div class="line"><span class="comment"># Index 2: free RAM</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getRAMinfo</span><span class="params">()</span>:</span></div><div class="line">    p = os.popen(<span class="string">'free'</span>)</div><div class="line">    i = <span class="number">0</span></div><div class="line">    <span class="keyword">while</span> <span class="number">1</span>:</div><div class="line">        i = i + <span class="number">1</span></div><div class="line">        line = p.readline()</div><div class="line">        <span class="keyword">if</span> i==<span class="number">2</span>:</div><div class="line">            <span class="keyword">return</span>(line.split()[<span class="number">1</span>:<span class="number">4</span>])</div><div class="line"></div><div class="line"><span class="comment"># Return % of CPU used by user as a character string                               </span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getCPUuse</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">return</span>(str(os.popen(<span class="string">"top -n1 | awk '/Cpu\(s\):/ &#123;print $2&#125;'"</span>).readline().strip()))</div><div class="line"></div><div class="line"><span class="comment"># Return information about disk space as a list (unit included)                    </span></div><div class="line"><span class="comment"># Index 0: total disk space                                                  </span></div><div class="line"><span class="comment"># Index 1: used disk space                                                        </span></div><div class="line"><span class="comment"># Index 2: remaining disk space                                                    </span></div><div class="line"><span class="comment"># Index 3: percentage of disk used                                                 </span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getDiskSpace</span><span class="params">()</span>:</span></div><div class="line">    p = os.popen(<span class="string">"df -h /"</span>)</div><div class="line">    i = <span class="number">0</span></div><div class="line">    <span class="keyword">while</span> <span class="number">1</span>:</div><div class="line">        i = i +<span class="number">1</span></div><div class="line">        line = p.readline()</div><div class="line">        <span class="keyword">if</span> i==<span class="number">2</span>:</div><div class="line">            <span class="keyword">return</span>(line.split()[<span class="number">1</span>:<span class="number">5</span>])</div><div class="line"></div><div class="line"><span class="comment"># CPU informatiom</span></div><div class="line">CPU_temp = getCPUtemperature()</div><div class="line">CPU_usage = getCPUuse()</div><div class="line"></div><div class="line"><span class="comment"># RAM information</span></div><div class="line"><span class="comment"># Output is in kb, here I convert it in Mb for readability</span></div><div class="line">RAM_stats = getRAMinfo()</div><div class="line">RAM_total = round(int(RAM_stats[<span class="number">0</span>]) / <span class="number">1000</span>,<span class="number">1</span>)</div><div class="line">RAM_used = round(int(RAM_stats[<span class="number">1</span>]) / <span class="number">1000</span>,<span class="number">1</span>)</div><div class="line">RAM_free = round(int(RAM_stats[<span class="number">2</span>]) / <span class="number">1000</span>,<span class="number">1</span>)</div><div class="line"></div><div class="line"><span class="comment"># Disk information</span></div><div class="line">DISK_stats = getDiskSpace()</div><div class="line">DISK_total = DISK_stats[<span class="number">0</span>]</div><div class="line">DISK_used = DISK_stats[<span class="number">1</span>]</div><div class="line">DISK_perc = DISK_stats[<span class="number">3</span>]</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    print(<span class="string">''</span>)</div><div class="line">    print(<span class="string">'CPU Temperature = '</span>+CPU_temp)</div><div class="line">    print(<span class="string">'CPU Use = '</span>+CPU_usage)</div><div class="line">    print(<span class="string">''</span>)</div><div class="line">    print(<span class="string">'RAM Total = '</span>+str(RAM_total)+<span class="string">' MB'</span>)</div><div class="line">    print(<span class="string">'RAM Used = '</span>+str(RAM_used)+<span class="string">' MB'</span>)</div><div class="line">    print(<span class="string">'RAM Free = '</span>+str(RAM_free)+<span class="string">' MB'</span>)</div><div class="line">    print(<span class="string">''</span>)</div><div class="line">    print(<span class="string">'DISK Total Space = '</span>+str(DISK_total)+<span class="string">'B'</span>)</div><div class="line">    print(<span class="string">'DISK Used Space = '</span>+str(DISK_used)+<span class="string">'B'</span>)</div><div class="line">    print(<span class="string">'DISK Used Percentage = '</span>+str(DISK_perc))</div></pre></td></tr></table></figure>
+<p>然后执行：<br>chmod +x get.py<br>python get.py<br>预期输出结果如下：</p>
+<p>CPU Temperature = 53.0<br>CPU Use = 13.5</p>
+<p>RAM Total = 497.0 MB<br>RAM Used = 116.0 MB<br>RAM Free = 381.0 MB</p>
+<p>DISK Total Space = 3.6GB<br>DISK Used Space = 1.8GB<br>DISK Used Percentage = 53%</p>
+<h2 id="风扇PWM调速"><a href="#风扇PWM调速" class="headerlink" title="风扇PWM调速"></a>风扇PWM调速</h2><p>树莓派的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># nano fan.py</span></div><div class="line"><span class="keyword">import</span> RPi.GPIO</div><div class="line">RPi.GPIO.setmode(RPi.GPIO.BCM)</div><div class="line">RPi.GPIO.setup(<span class="number">2</span>, RPi.GPIO.OUT)</div><div class="line">pwm = RPi.GPIO.PWM(<span class="number">2</span>,<span class="number">100</span>)</div><div class="line">RPi.GPIO.setwarnings(<span class="keyword">False</span>)</div><div class="line">pwm.start(<span class="number">0</span>)</div><div class="line">pwm.ChangeDutyCycle(<span class="number">40</span>)</div></pre></td></tr></table></figure></p>
+<p>查看python进程id：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps -ef |grep python</div></pre></td></tr></table></figure></p>
+<p>杀死pid为1180的进程：<br>kill -s 9 1180</p>
+<p>GPIO BCM 2;</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># encoding: utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> RPi.GPIO</div><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line">start = <span class="number">45</span></div><div class="line">stop = <span class="number">35</span></div><div class="line"></div><div class="line">RPi.GPIO.setwarnings(<span class="keyword">False</span>)</div><div class="line">RPi.GPIO.setmode(RPi.GPIO.BCM)</div><div class="line">RPi.GPIO.setup(<span class="number">2</span>, RPi.GPIO.OUT)</div><div class="line">pwm = RPi.GPIO.PWM(<span class="number">2</span>, <span class="number">25</span>) <span class="comment">#GPIO channel 2, frequency 25</span></div><div class="line">fan = <span class="keyword">False</span></div><div class="line">pwm.start(<span class="number">35</span>) <span class="comment">#初始空比35(范围0~100)</span></div><div class="line"></div><div class="line"><span class="keyword">try</span>:</div><div class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">        <span class="keyword">with</span> open(<span class="string">'/sys/class/thermal/thermal_zone0/temp'</span>) <span class="keyword">as</span> f:</div><div class="line">            cur = int(f.read()) / <span class="number">1000</span></div><div class="line">            now = time.strftime(<span class="string">"%H:%M:%S"</span>,time.localtime(time.time()))</div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> fan <span class="keyword">and</span> cur &gt;= start:</div><div class="line">                pwm.start(<span class="number">80</span>)</div><div class="line">                fan = <span class="keyword">True</span></div><div class="line">                <span class="comment">#print("[%s] Fan on @ %s" % (now, cur))</span></div><div class="line">            <span class="keyword">if</span> fan <span class="keyword">and</span> cur &lt;= stop:</div><div class="line">                <span class="comment">#pwm.stop()</span></div><div class="line">                pwm.start(<span class="number">30</span>)</div><div class="line">                fan = <span class="keyword">False</span></div><div class="line">                <span class="comment">#print("[%s] Fan off @ %s" % (now, cur))</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      <div>
+         
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+              <strong>本文作者：</strong>Oratun
+          </li>
+          <li class="post-copyright-link">
+            <strong>本文链接：</strong>
+            <a href="/2017/10/14/树莓派的基本配置/" title="树莓派的基本配置">2017/10/14/树莓派的基本配置/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>许可协议： </strong>
+            除特殊声明外，本站文章均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0 CN</a> 许可协议，转载请注明出处！
+          </li>
+        </ul>
+        
+      </div>
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/14/打造一台高性能Ryzen主机/" rel="next" title="打造一台高性能Ryzen主机">
+                <i class="fa fa-chevron-left"></i> 打造一台高性能Ryzen主机
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Oratun</p>
+              <p class="site-description motion-element" itemprop="description">to be a programmer</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#树莓派初始配置"><span class="nav-number">1.</span> <span class="nav-text">树莓派初始配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#连接wifi"><span class="nav-number">1.1.</span> <span class="nav-text">连接wifi</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看CPU温度："><span class="nav-number">2.</span> <span class="nav-text">查看CPU温度：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#建立脚本："><span class="nav-number">2.1.</span> <span class="nav-text">建立脚本：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#贴入Python代码："><span class="nav-number">2.2.</span> <span class="nav-text">贴入Python代码：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#风扇PWM调速"><span class="nav-number">3.</span> <span class="nav-text">风扇PWM调速</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Oratun</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://tongzhaohui.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://tongzhaohui.com/2017/10/14/树莓派的基本配置/';
+          this.page.identifier = '2017/10/14/树莓派的基本配置/';
+          this.page.title = '树莓派的基本配置';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://tongzhaohui.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
