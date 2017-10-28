@@ -391,7 +391,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://tongzhaohui.com/2017/10/14/树莓派的基本配置/">
+    <link itemprop="mainEntityOfPage" href="http://tongzhaohui.com/2017/10/14/树莓派上手记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Oratun">
@@ -410,7 +410,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/14/树莓派的基本配置/" itemprop="url">树莓派的基本配置</a></h1>
+                <a class="post-title-link" href="/2017/10/14/树莓派上手记/" itemprop="url">树莓派上手记</a></h1>
         
 
         <div class="post-meta">
@@ -441,9 +441,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/14/树莓派的基本配置/#comments" itemprop="discussionUrl">
+                <a href="/2017/10/14/树莓派上手记/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/14/树莓派的基本配置/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/10/14/树莓派上手记/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -480,11 +480,9 @@
 <li>配置无线网络<br>sudo nano /etc/wpa.conf<br>将下列内容复制进去<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">network=&#123;</div><div class="line">ssid=<span class="string">"WIFI的SSID"</span></div><div class="line">proto=RSN</div><div class="line">key_mgmt=WPA-PSK</div><div class="line">pairwise=CCMP TKIP</div><div class="line">group=CCMP TKIP</div><div class="line">psk=<span class="string">"WIFI的密码"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>接下来编辑网络配置文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">sudo nano /etc/network/interfaces</div><div class="line"></div><div class="line">auto lo</div><div class="line">iface lo inet loopback</div><div class="line">iface eth0 inet dhcp</div><div class="line">allow-hotplug wlan0</div><div class="line">iface wlan0 inet manual</div><div class="line">wpa-roam /etc/wpa.conf  &lt;---增加此行</div><div class="line"><span class="comment">#wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf   &lt;---注释掉此行</span></div><div class="line">iface default inet dhcp</div></pre></td></tr></table></figure></p>
-<p>保存，退出<br>重启树莓派，拔掉网线，它将自动连上无线网络。<br>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/10/14/树莓派的基本配置/#more" rel="contents">
+            <a class="btn" href="/2017/10/14/树莓派上手记/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
