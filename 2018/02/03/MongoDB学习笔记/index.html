@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Cursor相当于指针，可以拿游标做我们想做的任何事情，比如说计数或者跨行之类的，而无需把真正的数据拖下来，在真正的数据上操作。 ##相似database  相当于  schemadocuments  相当于  tablecollections  相当于  rowfields  相当于 columns ##区别columns定义在tablefields定义在documents也就是说每个docum">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB学习笔记">
+<meta property="og:url" content="http://tongzhaohui.com/2018/02/03/MongoDB学习笔记/index.html">
+<meta property="og:site_name" content="Oratun&#39;s Blog">
+<meta property="og:description" content="Cursor相当于指针，可以拿游标做我们想做的任何事情，比如说计数或者跨行之类的，而无需把真正的数据拖下来，在真正的数据上操作。 ##相似database  相当于  schemadocuments  相当于  tablecollections  相当于  rowfields  相当于 columns ##区别columns定义在tablefields定义在documents也就是说每个docum">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-03T03:11:29.197Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MongoDB学习笔记">
+<meta name="twitter:description" content="Cursor相当于指针，可以拿游标做我们想做的任何事情，比如说计数或者跨行之类的，而无需把真正的数据拖下来，在真正的数据上操作。 ##相似database  相当于  schemadocuments  相当于  tablecollections  相当于  rowfields  相当于 columns ##区别columns定义在tablefields定义在documents也就是说每个docum">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://tongzhaohui.com/2018/02/03/MongoDB学习笔记/"/>
+
+
+
+
+
+  <title>MongoDB学习笔记 | Oratun's Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-107341316-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Oratun's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://tongzhaohui.com/2018/02/03/MongoDB学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Oratun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Oratun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MongoDB学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-03T11:02:59+08:00">
+                2018-02-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/03/MongoDB学习笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/02/03/MongoDB学习笔记/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Cursor相当于指针，可以拿游标做我们想做的任何事情，比如说计数或者跨行之类的，而无需把真正的数据拖下来，在真正的数据上操作。</p>
+<p>##相似<br>database  相当于  schema<br>documents  相当于  table<br>collections  相当于  row<br>fields  相当于 columns</p>
+<p>##区别<br>columns定义在table<br>fields定义在documents<br>也就是说每个document都可以有自己<strong>独立</strong>的fields(各个文档的字段不必一致)</p>
+<p>##命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">$ mongod #开启服务</div><div class="line">$ mongo shell #进入一个基于JavaScript的shell</div><div class="line">&gt; help() #查看所有命令</div><div class="line">&gt; use learn #切换数据库,若不存在会自动创建</div><div class="line">&gt; db.getCollectionNames() #获取数据库中集合名称</div><div class="line">[]</div><div class="line">#创建一个集合</div><div class="line">&gt; db.unicorns.insert(&#123;name: &apos;Ora&apos;, gender: &apos;f&apos;, weight: 450&#125;)</div><div class="line">WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;)</div><div class="line">&gt; db.getCollectionNames()</div><div class="line">[ &quot;unicorns” ]</div><div class="line">#查找某个集合中的文档</div><div class="line">#_id字段自动生成,默认有索引</div><div class="line">&gt; db.unicorns.find()</div><div class="line">&#123; &quot;_id&quot; : ObjectId(&quot;5a6096991bcaab3a3d90139d&quot;), &quot;name&quot; : &quot;Ora&quot;, &quot;gender&quot; : &quot;f&quot;, &quot;weight&quot; : 450 &#125;</div><div class="line">#插入一个完全不同的文档</div><div class="line">&gt; db.unicorns.insert(&#123;name: &apos;ora&apos;, gender: &apos;m&apos;, home: &apos;newyork&apos;, &apos;worm&apos;: false&#125;)</div><div class="line">WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;)</div><div class="line">#无模式的体现schema-less</div><div class="line">&gt; db.unicorns.find()</div><div class="line">&#123; &quot;_id&quot; : ObjectId(&quot;5a6096991bcaab3a3d90139d&quot;), &quot;name&quot; : &quot;Ora&quot;, &quot;gender&quot; : &quot;f&quot;, &quot;weight&quot; : 450 &#125;</div><div class="line">&#123; &quot;_id&quot; : ObjectId(&quot;5a60986b1bcaab3a3d90139e&quot;), &quot;name&quot; : &quot;ora&quot;, &quot;gender&quot; : &quot;m&quot;, &quot;home&quot; : &quot;newyork&quot;, &quot;worm&quot; : false &#125;</div></pre></td></tr></table></figure></p>
+<p>##选择器Selector</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#选择器是一个JSON对象, 可以用&#123;&#125;匹配所有的文档</div><div class="line">&gt; db.unicorns.find(&#123;&#125;)</div><div class="line">&#123; &quot;_id&quot; : ObjectId(&quot;5a6096991bcaab3a3d90139d&quot;), &quot;name&quot; : &quot;Ora&quot;, &quot;gender&quot; : &quot;f&quot;, &quot;weight&quot; : 450 &#125;</div><div class="line">&#123; &quot;_id&quot; : ObjectId(&quot;5a60986b1bcaab3a3d90139e&quot;), &quot;name&quot; : &quot;ora&quot;, &quot;gender&quot; : &quot;m&quot;, &quot;home&quot; : &quot;newyork&quot;, &quot;worm&quot; : false &#125;</div><div class="line">#如果想找出所有的母独角兽,可以用&#123;gender: &apos;f&apos;&#125;</div><div class="line">&gt; db.unicorns.find(&#123;gender: &apos;f&apos;&#125;)</div><div class="line">&#123; &quot;_id&quot; : ObjectId(&quot;5a6096991bcaab3a3d90139d&quot;), &quot;name&quot; : &quot;Ora&quot;, &quot;gender&quot; : &quot;f&quot;, &quot;weight&quot; : 450 &#125;</div></pre></td></tr></table></figure>
+<p>{field: value} 用来查找那些 field 的值等于 value 的文档<br>{field1: value1, field2: value2} 相当于 and 查询.<br>$lt, $lte, $gt, $gte 和 $ne 被用来处理 小于，小于等于，大于，大于等于，和不等于操作.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">#获取所有体重大于700磅的公独角兽</div><div class="line">db.unicorns.find(&#123;gender: &apos;m&apos;,</div><div class="line">    weight: &#123;$gt: 700&#125;&#125;)</div><div class="line">#$exists 用来匹配字段是否存在</div><div class="line">db.unicorns.find(&#123;</div><div class="line">    vampires: &#123;$exists: false&#125;&#125;)</div><div class="line">#&apos;$in&apos; 被用来匹配查询文档在我们传入的数组参数中是否存在匹配值</div><div class="line">#会返回那些喜欢 apple 或者 orange 的独角兽</div><div class="line">db.unicorns.find(&#123;</div><div class="line">    loves: &#123;$in:[&apos;apple&apos;,&apos;orange&apos;]&#125;&#125;)</div><div class="line">#$or 操作符，要匹配的数组:</div><div class="line">#查询喜欢 apples 或者 weight 小于500磅的母独角兽</div><div class="line">db.unicorns.find(&#123;gender: &apos;f&apos;,</div><div class="line">    $or: [&#123;loves: &apos;apple&apos;&#125;,</div><div class="line">          &#123;weight: &#123;$lt: 500&#125;&#125;]&#125;)</div><div class="line"># 基于数组的查询,会把文档中 loves 中有 watermelon 的所有值取到</div><div class="line">db.unicorns.find(&#123;loves: &apos;watermelon&apos;&#125;)</div></pre></td></tr></table></figure></p>
+<p>##增删改查<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">db.unicorns.insert(&#123;name: &apos;Leto&apos;,</div><div class="line">        gender: &apos;m&apos;,</div><div class="line">        home: &apos;Arrakeen&apos;,</div><div class="line">        worm: false&#125;)</div><div class="line">#删delete</div><div class="line">db.unicorns.remove(&#123;&#125;) #删除所有</div><div class="line">#查select</div><div class="line">db.unicorns.find(&#123;&#125;) #查询所有</div></pre></td></tr></table></figure></p>
+<p>###生成测试数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div></pre></td><td class="code"><pre><div class="line">db.unicorns.insert(&#123;name: &apos;Horny&apos;,</div><div class="line">    dob: new Date(1992,2,13,7,47),</div><div class="line">    loves: [&apos;carrot&apos;,&apos;papaya&apos;],</div><div class="line">    weight: 600,</div><div class="line">    gender: &apos;m&apos;,</div><div class="line">    vampires: 63&#125;);</div><div class="line"></div><div class="line"></div><div class="line">db.unicorns.insert(&#123;name: &apos;Aurora&apos;,</div><div class="line">    dob: new Date(1991, 0, 24, 13, 0),</div><div class="line">    loves: [&apos;carrot&apos;, &apos;grape&apos;],</div><div class="line">    weight: 450,</div><div class="line">    gender: &apos;f&apos;,</div><div class="line">    vampires: 43&#125;);</div><div class="line"></div><div class="line"></div><div class="line">db.unicorns.insert(&#123;name: &apos;Unicrom&apos;,</div><div class="line">    dob: new Date(1973, 1, 9, 22, 10),</div><div class="line">    loves: [&apos;energon&apos;, &apos;redbull&apos;],</div><div class="line">    weight: 984,</div><div class="line">    gender: &apos;m&apos;,</div><div class="line">    vampires: 182&#125;);</div><div class="line"></div><div class="line"></div><div class="line">db.unicorns.insert(&#123;name: &apos;Roooooodles&apos;,</div><div class="line">    dob: new Date(1979, 7, 18, 18, 44),</div><div class="line">    loves: [&apos;apple&apos;],</div><div class="line">    weight: 575,</div><div class="line">    gender: &apos;m&apos;,</div><div class="line">    vampires: 99&#125;);</div><div class="line"></div><div class="line"></div><div class="line">db.unicorns.insert(&#123;name: &apos;Solnara&apos;,</div><div class="line">    dob: new Date(1985, 6, 4, 2, 1),</div><div class="line">    loves:[&apos;apple&apos;, &apos;carrot&apos;,</div><div class="line">        &apos;chocolate&apos;],</div><div class="line">    weight:550,</div><div class="line">    gender:&apos;f&apos;,</div><div class="line">    vampires:80&#125;);</div><div class="line"></div><div class="line"></div><div class="line">db.unicorns.insert(&#123;name:&apos;Ayna&apos;,</div><div class="line">    dob: new Date(1998, 2, 7, 8, 30),</div><div class="line">    loves: [&apos;strawberry&apos;, &apos;lemon&apos;],</div><div class="line">    weight: 733,</div><div class="line">    gender: &apos;f&apos;,</div><div class="line">    vampires: 40&#125;);</div><div class="line"></div><div class="line"></div><div class="line">db.unicorns.insert(&#123;name:&apos;Kenny&apos;,</div><div class="line">    dob: new Date(1997, 6, 1, 10, 42),</div><div class="line">    loves: [&apos;grape&apos;, &apos;lemon&apos;],</div><div class="line">    weight: 690,</div><div class="line">    gender: &apos;m&apos;,</div><div class="line">    vampires: 39&#125;);</div><div class="line"></div><div class="line"></div><div class="line">db.unicorns.insert(&#123;name: &apos;Raleigh&apos;,</div><div class="line">    dob: new Date(2005, 4, 3, 0, 57),</div><div class="line">    loves: [&apos;apple&apos;, &apos;sugar&apos;],</div><div class="line">    weight: 421,</div><div class="line">    gender: &apos;m&apos;,</div><div class="line">    vampires: 2&#125;);</div><div class="line"></div><div class="line"></div><div class="line">db.unicorns.insert(&#123;name: &apos;Leia&apos;,</div><div class="line">    dob: new Date(2001, 9, 8, 14, 53),</div><div class="line">    loves: [&apos;apple&apos;, &apos;watermelon&apos;],</div><div class="line">    weight: 601,</div><div class="line">    gender: &apos;f&apos;,</div><div class="line">    vampires: 33&#125;);</div><div class="line"></div><div class="line"></div><div class="line">db.unicorns.insert(&#123;name: &apos;Pilot&apos;,</div><div class="line">    dob: new Date(1997, 2, 1, 5, 3),</div><div class="line">    loves: [&apos;apple&apos;, &apos;watermelon&apos;],</div><div class="line">    weight: 650,</div><div class="line">    gender: &apos;m&apos;,</div><div class="line">    vampires: 54&#125;);</div><div class="line"></div><div class="line"></div><div class="line">db.unicorns.insert(&#123;name: &apos;Nimue&apos;,</div><div class="line">    dob: new Date(1999, 11, 20, 16, 15),</div><div class="line">    loves: [&apos;grape&apos;, &apos;carrot&apos;],</div><div class="line">    weight: 540,</div><div class="line">    gender: &apos;f&apos;&#125;);</div><div class="line"></div><div class="line"></div><div class="line">db.unicorns.insert(&#123;name: &apos;Dunx&apos;,</div><div class="line">    dob: new Date(1976, 6, 18, 18, 18),</div><div class="line">    loves: [&apos;grape&apos;, &apos;watermelon&apos;],</div><div class="line">    weight: 704,</div><div class="line">    gender: &apos;m&apos;,</div><div class="line">    vampires: 165&#125;);</div></pre></td></tr></table></figure></p>
+<p>##更新Update</p>
+<p>###Update:覆盖还是$set<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 如果想把Roooooodles的weight设为590</div><div class="line"># 以下操作会用&#123;weight: 590&#125;覆盖掉符合&#123;name: &apos;Roooooodles&apos;&#125;的第一个文档</div><div class="line"># 相当于replace</div><div class="line">db.unicorns.update(&#123;name: &apos;Roooooodles&apos;&#125;,</div><div class="line">    &#123;weight: 590&#125;)</div><div class="line"># 正确的更新操作</div><div class="line">db.unicorns.update(&#123;name: &apos;Roooooodles&apos;&#125;,</div><div class="line">    &#123;$set: &#123;weight: 590&#125;&#125;)</div></pre></td></tr></table></figure></p>
+<p>###Update<br>所有的更新操作都是对字段起作用,所以不用担心整个文档被删掉。<br>$inc 可以用来给一个字段增加一个正/负值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">db.unicorns.update(&#123;name: &apos;Pilot&apos;&#125;,</div><div class="line">    &#123;$inc: &#123;vampires: -2&#125;&#125;)</div></pre></td></tr></table></figure></p>
+<p>###Upserts<br>upsert 更新，即在文档中找到匹配值时更新它，无匹配时向文档插入新值<br>使用 upsert 我们需要向 update 写入第三个参数 {upsert:true}<br>应用: 网站点击计数器<br>常规如果我们想保存一个实时点击总数，我们得先看看是否在页面上已经有点击记录，然后基于此再决定执行更新或者插入操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># 加上upsert选项后</div><div class="line">db.hits.update(&#123;page: &apos;unicorns&apos;&#125;,</div><div class="line">    &#123;$inc: &#123;hits: 1&#125;&#125;, &#123;upsert: true&#125;);</div><div class="line"># 由于没有找到字段 page 值为 unicorns的文档，一个新的文档被生成插入。当我们第二次执行这句命令的时候，这个既存的文档将会被更新，且 hits 会被增加到 2。</div></pre></td></tr></table></figure></p>
+<p>###批量Updates<br><strong>默认只更新单个文档</strong></p>
+<p>使用{multi:true}选项 批量更新,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">db.unicorns.update(&#123;&#125;,</div><div class="line">    &#123;$set: &#123;vaccinated: true &#125;&#125;,</div><div class="line">    &#123;multi:true&#125;);</div><div class="line"># 所有的独角兽设置&#123;vaccinated: true&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      <div>
+         
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+              <strong>本文作者：</strong>Oratun
+          </li>
+          <li class="post-copyright-link">
+            <strong>本文链接：</strong>
+            <a href="/2018/02/03/MongoDB学习笔记/" title="MongoDB学习笔记">2018/02/03/MongoDB学习笔记/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>许可协议： </strong>
+            除特殊声明外，本站文章均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0 CN</a> 许可协议，转载请注明出处！
+          </li>
+        </ul>
+        
+      </div>
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/14/打造一台高性能Ryzen主机/" rel="next" title="打造一台高性能Ryzen主机">
+                <i class="fa fa-chevron-left"></i> 打造一台高性能Ryzen主机
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Oratun</p>
+              <p class="site-description motion-element" itemprop="description">to be a programmer</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Oratun</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://tongzhaohui.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://tongzhaohui.com/2018/02/03/MongoDB学习笔记/';
+          this.page.identifier = '2018/02/03/MongoDB学习笔记/';
+          this.page.title = 'MongoDB学习笔记';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://tongzhaohui.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
