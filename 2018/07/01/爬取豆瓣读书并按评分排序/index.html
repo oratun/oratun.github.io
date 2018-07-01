@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="旅行, 成都, 美食," />
+  <meta name="keywords" content="Python, 豆瓣, 书籍, 搜索, 爬虫," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="​&amp;emsp;&amp;emsp;从成都回来一个星期了，得写点什么这个念头一直徘徊在我的脑海。拖沓了几天，今天终于决定动手敲下。这是一次很棒的旅行，从3月30日15点40分乘车驶离车站开始，到4月4日晚20点冒雨归家结束。我沿着扬州、镇江、常州、上海、成都这样一条轨迹往返，度过了这个充实的假期。 ​&amp;emsp;&amp;emsp;离开青城山回成都的大巴上，有人介绍说喜欢吃辣应该去重庆火锅，而成都火锅更多的是麻和香">
-<meta name="keywords" content="旅行, 成都, 美食">
+<meta name="description" content="最近亚马逊电子书搞活动，编程书籍折扣力度较大，我想买几本评分较高的python书籍，就在豆瓣读书上搜索了一下，发现搜索结果是无序的并且没有按评分排序的功能，于是自己写了爬虫，抓取并缓存搜索结果，对数据适当清洗后根据评分由高到低排序，存入csv文件。 因为豆瓣读书的搜索结果页面是通过Ajax异步加载的，无法通过requests获取到包含图书信息的HTML，所以使用Selenium + Chrome的">
+<meta name="keywords" content="Python, 豆瓣, 书籍, 搜索, 爬虫">
 <meta property="og:type" content="article">
-<meta property="og:title" content="成都游记">
-<meta property="og:url" content="http://tongzhaohui.com/2017/04/10/成都游记/index.html">
+<meta property="og:title" content="爬取豆瓣读书并按评分排序">
+<meta property="og:url" content="http://tongzhaohui.com/2018/07/01/爬取豆瓣读书并按评分排序/index.html">
 <meta property="og:site_name" content="Oratun&#39;s Blog">
-<meta property="og:description" content="​&amp;emsp;&amp;emsp;从成都回来一个星期了，得写点什么这个念头一直徘徊在我的脑海。拖沓了几天，今天终于决定动手敲下。这是一次很棒的旅行，从3月30日15点40分乘车驶离车站开始，到4月4日晚20点冒雨归家结束。我沿着扬州、镇江、常州、上海、成都这样一条轨迹往返，度过了这个充实的假期。 ​&amp;emsp;&amp;emsp;离开青城山回成都的大巴上，有人介绍说喜欢吃辣应该去重庆火锅，而成都火锅更多的是麻和香">
+<meta property="og:description" content="最近亚马逊电子书搞活动，编程书籍折扣力度较大，我想买几本评分较高的python书籍，就在豆瓣读书上搜索了一下，发现搜索结果是无序的并且没有按评分排序的功能，于是自己写了爬虫，抓取并缓存搜索结果，对数据适当清洗后根据评分由高到低排序，存入csv文件。 因为豆瓣读书的搜索结果页面是通过Ajax异步加载的，无法通过requests获取到包含图书信息的HTML，所以使用Selenium + Chrome的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-02T07:58:58.000Z">
+<meta property="og:updated_time" content="2018-07-01T06:59:12.516Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="成都游记">
-<meta name="twitter:description" content="​&amp;emsp;&amp;emsp;从成都回来一个星期了，得写点什么这个念头一直徘徊在我的脑海。拖沓了几天，今天终于决定动手敲下。这是一次很棒的旅行，从3月30日15点40分乘车驶离车站开始，到4月4日晚20点冒雨归家结束。我沿着扬州、镇江、常州、上海、成都这样一条轨迹往返，度过了这个充实的假期。 ​&amp;emsp;&amp;emsp;离开青城山回成都的大巴上，有人介绍说喜欢吃辣应该去重庆火锅，而成都火锅更多的是麻和香">
+<meta name="twitter:title" content="爬取豆瓣读书并按评分排序">
+<meta name="twitter:description" content="最近亚马逊电子书搞活动，编程书籍折扣力度较大，我想买几本评分较高的python书籍，就在豆瓣读书上搜索了一下，发现搜索结果是无序的并且没有按评分排序的功能，于是自己写了爬虫，抓取并缓存搜索结果，对数据适当清洗后根据评分由高到低排序，存入csv文件。 因为豆瓣读书的搜索结果页面是通过Ajax异步加载的，无法通过requests获取到包含图书信息的HTML，所以使用Selenium + Chrome的">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://tongzhaohui.com/2017/04/10/成都游记/"/>
+  <link rel="canonical" href="http://tongzhaohui.com/2018/07/01/爬取豆瓣读书并按评分排序/"/>
 
 
 
 
 
-  <title>成都游记 | Oratun's Blog</title>
+  <title>爬取豆瓣读书并按评分排序 | Oratun's Blog</title>
   
 
 
@@ -252,7 +252,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://tongzhaohui.com/2017/04/10/成都游记/">
+    <link itemprop="mainEntityOfPage" href="http://tongzhaohui.com/2018/07/01/爬取豆瓣读书并按评分排序/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Oratun">
@@ -269,7 +269,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">成都游记</h1>
+          <h1 class="post-title" itemprop="name headline">爬取豆瓣读书并按评分排序</h1>
         
 
         <div class="post-meta">
@@ -281,8 +281,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-10T12:45:34+08:00">
-                2017-04-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-01T14:45:35+08:00">
+                2018-07-01
               </time>
             
 
@@ -300,9 +300,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/04/10/成都游记/#comments" itemprop="discussionUrl">
+                <a href="/2018/07/01/爬取豆瓣读书并按评分排序/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/04/10/成都游记/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/07/01/爬取豆瓣读书并按评分排序/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -335,14 +335,91 @@
       
 
       
-        <p>​&emsp;&emsp;从成都回来一个星期了，得写点什么这个念头一直徘徊在我的脑海。拖沓了几天，今天终于决定动手敲下。这是一次很棒的旅行，从3月30日15点40分乘车驶离车站开始，到4月4日晚20点冒雨归家结束。我沿着扬州、镇江、常州、上海、成都这样一条轨迹往返，度过了这个充实的假期。</p>
-<p>​&emsp;&emsp;离开青城山回成都的大巴上，有人介绍说喜欢吃辣应该去重庆火锅，而成都火锅更多的是麻和香，而成都的各色美食则不容错过。这个说法和我的实际感受是相符的，成都的火锅可概括为鲜香麻辣，而成都的其它美食则要多些滋味和层次。<br><a id="more"></a><br>​&emsp;&emsp;飘雨的当晚在成都工作的小伙伴带我们去吃火锅，选择的是位于春熙路的龙幺妹火锅店。店面不算很大，又是下雨天而门口等位的人却很多。从电梯出来首先印入眼帘的是扎堆坐在门口排号的顾客和一地的瓜子壳。店家给等位的顾客提供瓜子西瓜并不稀奇，而面条、凉糕等食品可供自取却是我这个外地人没有见过的，使我心里有些惊讶。门口的电视机上在放《血战钢锯岭》，所幸的是一行六人在电影进入高潮前坐到了店里。我们刚坐在一尺宽长板凳上，热锅里的辣椒们便躁动起来，火辣的气味借着氤氲的水气扑面而来，刺激着我的鼻腔，让人将白天游山玩水带来的疲惫望诸脑后。辣，是吃二三片红油锅里涮过的毛肚便要饮一两口果汁的那种辣，不是让你满头大汗、吐舌喘气还要以手为扇的那种辣。</p>
-<p>​&emsp;&emsp;黄喉鲜，毛肚脆，牛肉弹，糍粑糯。</p>
-<p>​&emsp;&emsp;当你搁下长筷准备等这股辣劲过去，此时一盘带着烫口温度的烤糍耙被端上来，上面浇了一层融化的红糖，外面香脆而内里软糯。一块块能解辣的烤糍耙，跟两天前的那碗冰粉有异曲同工之妙。</p>
-<p>​&emsp;&emsp;不吃辣的人也能在成都吃的舒心。除了鸳鸯锅，不辣的美食有很多。</p>
-<p>​&emsp;&emsp;由于飞机晚点，到成都的第一顿是在旁晚时分，在小「月君」肝串串店（读zhun第一声，是肫的异体字，指鸡、鸭、鹅的胃，方言念jun）。随着一串串牛肉、兔腰、鸭肝、牛肚……不停地放入沸腾的汤锅又抓起，在盛满蘸料的油碟里滚过，送入口中。正当我们被辣的不知如何是好之时，同学贴心地端来几份冰粉。如一瓢清水浇于烧红的木炭上，滋啦啦将心里的火熄灭。</p>
-<p>​&emsp;&emsp;在蓉的几天给我留下印象最深的不是火锅而是些看似不起眼的食物。</p>
-<p>​&emsp;&emsp;离开成都前吃的是一碗酸辣牛肉米线，我很庆幸没有选择踏进隔壁的兰州拉面。不起眼的小碟子，半盛着红黄相间的剁碎的某种辣椒，黄的是辣椒籽。随意舀了一点洒在碗里，拌上几下，立马有浓浓的辣味升腾起来。这辣椒不一般，我心里道，吃上一口，大概这才是四川味道的代表，它是小米椒的味道。</p>
+        <p>最近亚马逊电子书搞活动，编程书籍折扣力度较大，我想买几本评分较高的python书籍，就在豆瓣读书上搜索了一下，发现搜索结果是无序的并且没有按评分排序的功能，<br>于是自己写了爬虫，抓取并缓存搜索结果，对数据适当清洗后根据评分由高到低排序，存入csv文件。</p>
+<p>因为豆瓣读书的搜索结果页面是通过Ajax异步加载的，无法通过requests获取到包含图书信息的HTML，所以使用Selenium + Chrome的方式渲染js拿到数据。</p>
+<p>以下是部分数据</p>
+<p><strong>Python图书评分排行Top10</strong>（基于豆瓣读书数据）</p>
+<a id="more"></a>
+<table>
+<thead>
+<tr>
+<th>书名</th>
+<th>评分</th>
+<th>评价人数</th>
+<th>出版信息</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python神经网络编程</td>
+<td>9.7</td>
+<td>15</td>
+<td>[英]塔里克·拉希德（TariqRashid）,林赐,人民邮电出版社,2018-4,69.00元</td>
+</tr>
+<tr>
+<td>Fluent Python</td>
+<td>9.6</td>
+<td>196</td>
+<td>LucianoRamalho,O’ReillyMedia,2015-8-20,USD39.99</td>
+</tr>
+<tr>
+<td>Data Structures and Algorithms in Python</td>
+<td>9.6</td>
+<td>44</td>
+<td>MichaelT.Goodrich,RobertoTamassia,MichaelH.Goldwasser,JohnWiley&amp;Sons,2013-7-5,GBP121.23</td>
+</tr>
+<tr>
+<td>Django By Example</td>
+<td>9.5</td>
+<td>24</td>
+<td>AntonioMele,PacktPublishing,2015-11-30,GBP28.99</td>
+</tr>
+<tr>
+<td>流畅的Python</td>
+<td>9.4</td>
+<td>195</td>
+<td>[巴西]LucianoRamalho,安道,吴珂,人民邮电出版社,2017-5-15,139元</td>
+</tr>
+<tr>
+<td>Python编程初学者指南</td>
+<td>9.4</td>
+<td>20</td>
+<td>[美]MichaelDawson,王金兰,人民邮电出版社,2014-10-1</td>
+</tr>
+<tr>
+<td>Hands-On Machine Learning with Scikit-Learn and TensorFlow : Concepts, Tools, and Techniques for Building Intelligent Systems</td>
+<td>9.4</td>
+<td>177</td>
+<td>AurélienGéron,O’ReillyMedia,2017-1-25,USD49.99</td>
+</tr>
+<tr>
+<td>深度学习之TensorFlow：入门、原理与进阶实战</td>
+<td>9.4</td>
+<td>16</td>
+<td>李金洪,2018-2</td>
+</tr>
+<tr>
+<td>Python Cookbook 中文版，第 3 版</td>
+<td>9.3</td>
+<td>100</td>
+<td>DavidM.Beazley,BrianK.Jones,陈舸,人民邮电出版社,2015-5-1,108.00元</td>
+</tr>
+<tr>
+<td>Python Cookbook</td>
+<td>9.3</td>
+<td>97</td>
+<td>DavidBeazley,BrianK.Jones,O’ReillyMedia,2013-5-29,USD49.99</td>
+</tr>
+</tbody>
+</table>
+<p>运行环境 mac OS 10.14, Python 3.6, Chrome 67, ChromeDriver 2.37</p>
+<ul>
+<li>安装依赖包 $pip3 install -r requirements.txt</li>
+<li>下载 <a href="http://chromedriver.chromium.org/downloads" target="_blank" rel="noopener">ChromeDriver</a> 解压后放到 python安装位置/bin 目录</li>
+<li>编辑book.py将末行 main(‘python’) 的参数改为需要搜索的书籍名称</li>
+<li>运行 python3 book.py</li>
+</ul>
+<p><a href="http://chromedriver.chromium.org/downloads" target="_blank" rel="noopener">Github地址</a></p>
 
       
     </div>
@@ -360,7 +437,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/旅行-成都-美食/" rel="tag"># 旅行, 成都, 美食</a>
+            <a href="/tags/Python-豆瓣-书籍-搜索-爬虫/" rel="tag"># Python, 豆瓣, 书籍, 搜索, 爬虫</a>
           
         </div>
       
@@ -373,7 +450,7 @@
           </li>
           <li class="post-copyright-link">
             <strong>本文链接：</strong>
-            <a href="/2017/04/10/成都游记/" title="成都游记">2017/04/10/成都游记/</a>
+            <a href="/2018/07/01/爬取豆瓣读书并按评分排序/" title="爬取豆瓣读书并按评分排序">2018/07/01/爬取豆瓣读书并按评分排序/</a>
           </li>
           <li class="post-copyright-license">
             <strong>许可协议： </strong>
@@ -391,15 +468,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/04/12/Python读取xlsx文件并以json格式写入文件/" rel="next" title="Python读取xlsx文件并以json格式写入文件">
+                <i class="fa fa-chevron-left"></i> Python读取xlsx文件并以json格式写入文件
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/01/树莓派上手记/" rel="prev" title="树莓派上手记">
-                树莓派上手记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -487,7 +564,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -682,9 +759,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://tongzhaohui.com/2017/04/10/成都游记/';
-          this.page.identifier = '2017/04/10/成都游记/';
-          this.page.title = '成都游记';
+          this.page.url = 'http://tongzhaohui.com/2018/07/01/爬取豆瓣读书并按评分排序/';
+          this.page.identifier = '2018/07/01/爬取豆瓣读书并按评分排序/';
+          this.page.title = '爬取豆瓣读书并按评分排序';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://tongzhaohui.disqus.com/embed.js';
